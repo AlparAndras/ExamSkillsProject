@@ -50,7 +50,7 @@ namespace ExamSkillProject.Controllers
             }
         }
 
-        public ActionResult CreateForm()
+        public ActionResult AddEmployee()
         {
             return View();
         }

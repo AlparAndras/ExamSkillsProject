@@ -14,7 +14,7 @@ namespace ExamSkillProject.Models
         public bool BrowserRemembered { get; set; }
     }
 
-    public class CreateFormViewModel
+    public class CreateFormViewModel  
     {
         public int CreateFormId { get; set; }
         public string Text { get; set; }
