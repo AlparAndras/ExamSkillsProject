@@ -50,6 +50,11 @@ namespace ExamSkillProject.Controllers
             }
         }
 
+        public ActionResult CreateForm()
+        {
+            return View();
+        }
+
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)

@@ -36,5 +36,11 @@ namespace ExamSkillProject.Controllers
 
             return View();
         }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult TestAdmin()
+        {
+            return View();
+        }
     }
 }
