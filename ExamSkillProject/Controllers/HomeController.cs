@@ -17,7 +17,7 @@ namespace ExamSkillProject.Controllers
 
         //hello from Tanya
 
-        //hello yo ma niggas
+        //hello yo ma african americans
         public ActionResult Index()
         {
             return View();
