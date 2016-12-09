@@ -9,7 +9,6 @@ namespace ExamSkillProject.Controllers
     public class HomeController : Controller
     {
         //Hello from Alpar
-        // hello from roni
         public ActionResult Index()
         {
             return View();
