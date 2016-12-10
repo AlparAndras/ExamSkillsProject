@@ -201,6 +201,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ExamSkillProject.DAL.ApplicationContext.mdf" />
+    <Content Include="App_Data\ExamSkillProject.DAL.ApplicationContext_log.ldf">
+      <DependentUpon>ExamSkillProject.DAL.ApplicationContext.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -263,10 +267,12 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Home\ShowAllSkill.cshtml" />
+    <Content Include="Views\Home\SkillDetails.cshtml" />
+    <Content Include="Views\Home\CreateSkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\" />
+    <Folder Include="Views\Skills\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
