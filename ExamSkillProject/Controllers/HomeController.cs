@@ -36,9 +36,14 @@ namespace ExamSkillProject.Controllers
         }
 
         public ActionResult ShowAllSkill()
-        {
+        {            
+            if (Skills.Count < 1)
+            {                
+                return RedirectToAction("CreateSkill");                
+            }
             Skills = this.db.Skills.ToList();
             return View(Skills);
+           
         }
 
         public ActionResult SkillDetails(int id)
