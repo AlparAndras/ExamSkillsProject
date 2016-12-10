@@ -18,6 +18,9 @@ namespace ExamSkillProject.Controllers
 
 
 
+        
+        
+        
         private SkillsContext db = new SkillsContext();
         private List<Skill> Skills = new List<Skill>();
         public ActionResult Index()
