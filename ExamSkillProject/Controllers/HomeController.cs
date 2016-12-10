@@ -13,14 +13,6 @@ namespace ExamSkillProject.Controllers
         //hello from roni
         //hello from Alpar 
 
-
-
-
-
-
-        
-        
-        
         private SkillsContext db = new SkillsContext();
         private List<Skill> Skills = new List<Skill>();
         public ActionResult Index()
