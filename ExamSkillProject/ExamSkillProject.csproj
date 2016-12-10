@@ -201,6 +201,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-ExamSkillProject-20161209022551.mdf" />
+    <Content Include="App_Data\aspnet-ExamSkillProject-20161209022551_log.ldf">
+      <DependentUpon>aspnet-ExamSkillProject-20161209022551.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\ExamSkillProject.DAL.ApplicationContext.mdf" />
+    <Content Include="App_Data\ExamSkillProject.DAL.ApplicationContext_log.ldf">
+      <DependentUpon>ExamSkillProject.DAL.ApplicationContext.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -265,7 +273,6 @@
     <Content Include="Views\Home\ShowAllSkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
