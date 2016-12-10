@@ -17,7 +17,7 @@
     <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
     <script src="~/signalr/hubs"></script>
     <script>
-        var name = prompt("Write your name please: ")
+        //var name = prompt("Write your name please: ")
         var chatHub = $.connection.myHub;
         chatHub.client.newMessage = function (name, message) {
             $("#messageBox").append("<li>" + "<strong>" + name + "</strong>" + " sends the following message: " + "<strong>" + message + "</strong>" + "<br>" + ". It was sended at: " + "hello" + "</li>" + "<hr>");
