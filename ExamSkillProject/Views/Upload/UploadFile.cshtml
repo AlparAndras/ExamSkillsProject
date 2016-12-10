@@ -1,8 +1,4 @@
-﻿@{
-    ViewBag.Title = "UploadFile";
-}
-
-<h2>UploadFile</h2>
+﻿<h2>UploadFile</h2>
 
 @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -14,4 +10,5 @@
         @ViewBag.Message
 
     </div>
-}  
+}
+
