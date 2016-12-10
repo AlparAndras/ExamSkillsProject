@@ -1,19 +1,19 @@
-using System;
+﻿using System;
 using System.Data.Entity;
 using System.Linq;
 
 namespace ExamSkillProject.Models
-{   
+{
 
-    public class Skill : DbContext
+    public class Skills : DbContext
     {
-        public int SkillId { get; set; }
+        public int SkillsId { get; set; }
 
-        public string SkillName { get; set; }
+        public string SkillsName { get; set; }
 
-        public int SkillPoints { get; set; }
+        public int SkillsPoints { get; set; }
 
-        public string SkillDescription { get; set; }
+        public string SkillsDescription { get; set; }
 
 
 
@@ -23,7 +23,7 @@ namespace ExamSkillProject.Models
         // 
         // If you wish to target a different database and/or database provider, modify the 'Skill' 
         // connection string in the application configuration file.
-        public Skill()
+        public Skills()
             : base("name=Skill")
         {
         }

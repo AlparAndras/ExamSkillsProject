@@ -4,17 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ExamSkillProject.Models;
+using ExamSkillProject.DAL;
 
 namespace ExamSkillProject.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationContext db = new ApplicationContext();
         //Hello from Alpar
         //hello from roni
         //hello from Alpar 
-
-        private SkillsContext db = new SkillsContext();
-        private List<Skill> Skills = new List<Skill>();
+       
+        private List<Skills> Skills = new List<Skills>();
         public ActionResult Index()
         {
             return View();
@@ -34,7 +35,7 @@ namespace ExamSkillProject.Controllers
             return View();
         }
 
-        public ActionResult ShowAllSkills()
+        public ActionResult ShowAllSkill()
         {
             Skills = this.db.Skills.ToList();
             return View(Skills);
@@ -42,7 +43,7 @@ namespace ExamSkillProject.Controllers
 
         public ActionResult SkillDetails(int id)
         {
-            Skill skill = this.db.Skills.Find(id);
+            Skills skill = this.db.Skills.Find(id);
             return View(skill);
         }
 
@@ -53,14 +54,14 @@ namespace ExamSkillProject.Controllers
 
         }
         [HttpPost]
-        public ActionResult Create(Skill skill)
+        public ActionResult Create(Skills skills)
         {
             if (!ModelState.IsValid)
             {
-                return View("CreateSkill", skill);
+                return View("CreateSkill", skills);
             }
            
-            this.db.Skills.Add(skill);
+            this.db.Skills.Add(skills);
             db.SaveChanges();
             Skills = this.db.Skills.ToList();
             return View("CreateSkill");
