@@ -14,15 +14,6 @@ namespace ExamSkillProject.Models
         public bool BrowserRemembered { get; set; }
     }
 
-    public class CreateFormViewModel  
-    {
-        public int CreateFormId { get; set; }
-        public string FullName { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        // public virtual ApplicationUser User { get; set; }
-    }
-
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
