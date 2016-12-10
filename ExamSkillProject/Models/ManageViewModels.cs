@@ -17,7 +17,9 @@ namespace ExamSkillProject.Models
     public class CreateFormViewModel  
     {
         public int CreateFormId { get; set; }
-        public string Text { get; set; }
+        public string FullName { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
         // public virtual ApplicationUser User { get; set; }
     }
 

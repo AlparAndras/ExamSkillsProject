@@ -31,7 +31,8 @@ namespace ExamSkillProject.Controllers
                     file.SaveAs(_path);
                 }
                 ViewBag.Message = "File Uploaded Successfully!!";
-                return View();
+               
+                return View("AddEmployee");
             }
             catch
             {
