@@ -50,6 +50,11 @@ namespace ExamSkillProject.Controllers
             }
         }
 
+        public ActionResult AddEmployee()
+        {
+            return View();
+        }
+
         //
         // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)

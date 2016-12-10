@@ -5,6 +5,12 @@
     {
     @Html.AntiForgeryToken()
 
+    <ul class="nav navbar-nav navbar-left">
+        <li>@Html.ActionLink("Create Form", "AddEmployee", "Manage")</li>
+    </ul>
+    <ul class="nav navbar-nav navbar-left">
+        <li>@Html.ActionLink("Company", "Index", "Company")</li>
+    </ul>
     <ul class="nav navbar-nav navbar-right">
         <li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
