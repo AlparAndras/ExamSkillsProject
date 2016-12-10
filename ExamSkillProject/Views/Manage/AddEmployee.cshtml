@@ -8,15 +8,37 @@
 <div>
     <h1>Hello Test</h1>
     <hr />
+    
+  
+    
     <div class="form-horizontal">
-
+        <div class="container1">
+            <div class="header1">
+                
+                
+                <h2>Frontend</h2>
+                <img src="http://clikr.de/wp-content/uploads/2015/02/richard-150x150.jpg" class="profile">                  
+            </div>
+            <div class="content1">
+                @using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div>
+                        @Html.TextBox("file", "", new { type = "file" }) <br />
+                        <input type="submit" value="Upload" />
+                        @ViewBag.Message
+                    </div>
+                }
+                <h3>about me</h3>
+                <p>Hey - I am Richie, a 20 years old frontend dev from germany. Feel free to follow me. </p>                
+            </div>
+        </div>    
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
             </div>
         </div>
 
