@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ExamSkillProject.DAL;
+using ExamSkillProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,16 +10,21 @@ namespace ExamSkillProject.Controllers
 {
     public class EmployeeController : Controller
     {
+        private ApplicationContext db = new ApplicationContext();
+        private List<Employee> employees = new List<Employee>();
+
         // GET: Employee
         public ActionResult Index()
         {
-            return View();
+            employees = db.Employees.ToList();
+            return View(employees);
         }
 
         // GET: Employee/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Employee employee = db.Employees.Find(id);
+            return View(employee);
         }
 
         // GET: Employee/Create
@@ -28,17 +35,18 @@ namespace ExamSkillProject.Controllers
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Employee employee)
         {
-            try
+            if(ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                db.Employees.Add(employee);
+                db.SaveChanges();
                 return RedirectToAction("Index");
+                
             }
-            catch
+            else
             {
-                return View();
+                return View("Create");
             }
         }
 

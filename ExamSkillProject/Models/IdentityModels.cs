@@ -20,6 +20,7 @@ namespace ExamSkillProject.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public int CompanyId { get; set; }
         // public virtual ICollection<Test> tests { get; set; }
     }
 

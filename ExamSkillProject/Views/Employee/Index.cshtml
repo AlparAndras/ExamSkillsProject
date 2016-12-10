@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ExamSkillProject.Models.Employee>
 @{
     ViewBag.Title = "Index";
 }
@@ -6,6 +6,14 @@
 <h2>Index</h2>
 
 <h1>Hello from employee</h1>
+
+@foreach (var item in Model)
+{
+    <li>
+        @Html.DisplayFor(model => item.Email)
+        @Html.ActionLink("Details", "Details", new { id = item.EmployeeID})
+    </li>
+}
 
 @Html.ActionLink("Create", "Create")
 
