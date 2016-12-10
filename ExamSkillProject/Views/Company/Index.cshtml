@@ -3,8 +3,14 @@
 <h2>Company</h2>
 
 
-<h3>@Model.Description</h3>
+@if (Model != null)
+{
+    <h3>@Model.Name</h3>
 
-<p>@Model.Name</p>
+    <p>@Model.Description</p>
 
-<p>@Model.Address</p>
+    <p>@Model.Address</p>
+}else
+{
+    @Html.ActionLink("CREATE COMPANY", "Create", "Company", new { }, null);
+}

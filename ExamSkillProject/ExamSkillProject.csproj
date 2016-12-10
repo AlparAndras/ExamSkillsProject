@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201612092043191_InitialMigrations.Designer.cs">
       <DependentUpon>201612092043191_InitialMigrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612101710373_CompanyId.cs" />
+    <Compile Include="Migrations\201612101710373_CompanyId.Designer.cs">
+      <DependentUpon>201612101710373_CompanyId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
@@ -265,11 +269,11 @@
     <Content Include="Views\Home\ShowAllSkill.cshtml" />
     <Content Include="Views\Home\SkillDetails.cshtml" />
     <Content Include="Views\Home\CreateSkill.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\" />
+    <Folder Include="Views\Skills\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -282,6 +286,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201612092043191_InitialMigrations.resx">
       <DependentUpon>201612092043191_InitialMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612101710373_CompanyId.resx">
+      <DependentUpon>201612101710373_CompanyId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
