@@ -24,6 +24,7 @@ namespace ExamSkillProject.Controllers
         [HttpPost]
         public ActionResult Create(Company company)
         {
+
             return RedirectToAction("Index");
         }
     }

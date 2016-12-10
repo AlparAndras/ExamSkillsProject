@@ -48,12 +48,7 @@ namespace ExamSkillProject.Controllers
             {
                 _userManager = value;
             }
-        }
-
-        public ActionResult AddEmployee()
-        {
-            return View();
-        }
+        }        
 
         //
         // GET: /Manage/Index
