@@ -10,5 +10,6 @@ namespace ExamSkillProject.DAL
     public class ApplicationContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Company> Companies { get; set; }
     }
 }

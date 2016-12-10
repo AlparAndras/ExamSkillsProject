@@ -1,4 +1,5 @@
-﻿using ExamSkillProject.Models;
+﻿using ExamSkillProject.DAL;
+using ExamSkillProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace ExamSkillProject.Controllers
 {
     public class CompanyController : Controller
     {
+        private ApplicationContext db = new ApplicationContext();
+
         // GET: Company
         public ActionResult Index()
         {
@@ -24,6 +27,12 @@ namespace ExamSkillProject.Controllers
         [HttpPost]
         public ActionResult Create(Company company)
         {
+            Company newCom = new Company();
+            newCom.Address = "12asd";
+            newCom.Name = "Nafddsf";
+
+            db.Companies.Add(newCom);
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }
