@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExamSkillProject.Models.Skill>
+﻿@model IEnumerable<ExamSkillProject.Models.Skills>
 
 <!DOCTYPE html>
 
@@ -12,10 +12,10 @@
         <h2>List of all Skills</h2>
         <div class="list-group">
             <div style="font-size: 150%;">
-                @foreach (var skill in Model )
+                @foreach (var skill in Model)
                 {
-                                  
-                        <div>@Html.ActionLink( skill.SkillName ,"SkillDetails", new { id = skill.SkillId }) | @skill.SkillPoints</div><hr />                  
+
+                    <div>@Html.ActionLink(skill.SkillsName, "SkillDetails", new { id = skill.SkillsId }) | @skill.SkillsPoints</div><hr />
 
                 }
                 <p>@Html.ActionLink("Add New Skill", "CreateSkill")</p>

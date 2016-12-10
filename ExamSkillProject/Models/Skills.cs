@@ -1,26 +1,30 @@
+﻿using System;
+using System.Data.Entity;
+using System.Linq;
+
 namespace ExamSkillProject.Models
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
 
-    public class Assignments : DbContext
+    public class Skills : DbContext
     {
-        public int SkillId { get; set; }
+        public int SkillsId { get; set; }
 
-        public int EmployeeId { get; set; }
+        public string SkillsName { get; set; }
 
-        public DateTime? StartDate { get; set; }
+        public int SkillsPoints { get; set; }
 
-        public DateTime? EndDate { get; set; }
-        // Your context has been configured to use a 'Assignments' connection string from your application's 
+        public string SkillsDescription { get; set; }
+
+
+
+        // Your context has been configured to use a 'Skill' connection string from your application's 
         // configuration file (App.config or Web.config). By default, this connection string targets the 
-        // 'ExamSkillProject.Models.Assignments' database on your LocalDb instance. 
+        // 'ExamSkillProject.Models.Skill' database on your LocalDb instance. 
         // 
-        // If you wish to target a different database and/or database provider, modify the 'Assignments' 
+        // If you wish to target a different database and/or database provider, modify the 'Skill' 
         // connection string in the application configuration file.
-        public Assignments()
-            : base("name=Assignments")
+        public Skills()
+            : base("name=Skill")
         {
         }
 

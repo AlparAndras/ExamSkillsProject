@@ -8,9 +8,9 @@ namespace ExamSkillProject.Models
 {
     public class MyHub : Hub
     {
-        public void Hello()
+        public void Hello(string name, string text)
         {
-            Clients.All.hello();
+            Clients.All.newMessage(name, text);
           
         }
     }
