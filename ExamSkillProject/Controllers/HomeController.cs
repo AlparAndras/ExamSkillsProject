@@ -54,7 +54,7 @@ namespace ExamSkillProject.Controllers
 
         }
         [HttpPost]
-        public ActionResult Create(Skills skills)
+        public ActionResult CreateSkill(Skills skills)
         {
             if (!ModelState.IsValid)
             {

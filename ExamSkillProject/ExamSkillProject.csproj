@@ -263,6 +263,9 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Home\ShowAllSkill.cshtml" />
+    <Content Include="Views\Home\SkillDetails.cshtml" />
+    <Content Include="Views\Home\CreateSkill.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

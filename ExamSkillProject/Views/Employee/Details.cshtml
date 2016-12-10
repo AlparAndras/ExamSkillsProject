@@ -1,0 +1,19 @@
+﻿@model ExamSkillProject.Models.Employee
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<table>
+    <tr>
+        <td>Created</td>
+        <td>@Html.DisplayFor(i => i.FirstName)</td>
+        <td>@Html.DisplayFor(i => i.LastName)</td>
+        <td>@Html.DisplayFor(i => i.Email)</td>
+    </tr>
+
+</table>
+
+@Html.ActionLink("Back", "Index")
+
