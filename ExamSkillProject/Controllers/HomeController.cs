@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ExamSkillProject.Models;
 
 namespace ExamSkillProject.Controllers
 {
@@ -10,14 +11,18 @@ namespace ExamSkillProject.Controllers
     {
         //Hello from Alpar
         //hello from roni
-        //hello from TTTTT        
-
-         //Hello from Roni again
+        //hello from Alpar 
 
 
-        //hello from Tanya
 
-        //hello yo ma african americans
+
+
+
+        
+        
+        
+        private SkillsContext db = new SkillsContext();
+        private List<Skill> Skills = new List<Skill>();
         public ActionResult Index()
         {
             return View();
@@ -37,10 +42,36 @@ namespace ExamSkillProject.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
-        public ActionResult TestAdmin()
+        public ActionResult ShowAllSkills()
         {
-            return View();
+            Skills = this.db.Skills.ToList();
+            return View(Skills);
+        }
+
+        public ActionResult SkillDetails(int id)
+        {
+            Skill skill = this.db.Skills.Find(id);
+            return View(skill);
+        }
+
+        [HttpGet]
+        public ActionResult CreateSkill()
+        {
+            return View("CreateSkill");
+
+        }
+        [HttpPost]
+        public ActionResult Create(Skill skill)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("CreateSkill", skill);
+            }
+           
+            this.db.Skills.Add(skill);
+            db.SaveChanges();
+            Skills = this.db.Skills.ToList();
+            return View("CreateSkill");
         }
     }
 }

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<ExamSkillProject.Models.Skill>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h2>List of all Skills</h2>
+        <div class="list-group">
+            <div style="font-size: 150%;">
+                @foreach (var skill in Model )
+                {
+                                  
+                        <div>@Html.ActionLink( skill.SkillName ,"SkillDetails", new { id = skill.SkillId }) | @skill.SkillPoints</div><hr />                  
+
+                }
+                <p>@Html.ActionLink("Add New Skill", "CreateSkill")</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
