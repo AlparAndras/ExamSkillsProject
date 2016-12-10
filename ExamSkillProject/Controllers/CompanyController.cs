@@ -1,10 +1,12 @@
 ﻿using ExamSkillProject.DAL;
 using ExamSkillProject.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ExamSkillProject.Controllers
 {
@@ -13,9 +15,12 @@ namespace ExamSkillProject.Controllers
         private ApplicationContext db = new ApplicationContext();
 
         // GET: Company
-        public ActionResult Index()
+        public ActionResult Index( int companyId)
         {
-            return View();
+            User.Identity.GetUserId();
+
+
+            return View(db.Companies.Where(i => i.CompanyId == companyId).First());
         }
 
         [HttpGet]
@@ -27,11 +32,8 @@ namespace ExamSkillProject.Controllers
         [HttpPost]
         public ActionResult Create(Company company)
         {
-            Company newCom = new Company();
-            newCom.Address = "12asd";
-            newCom.Name = "Nafddsf";
 
-            db.Companies.Add(newCom);
+            db.Companies.Add(company);
             db.SaveChanges();
 
             return RedirectToAction("Index");
