@@ -75,5 +75,7 @@ namespace ExamSkillProject.Controllers
             Skills = this.db.Skills.ToList();
             return View("CreateSkill");
         }
+
+
     }
 }
