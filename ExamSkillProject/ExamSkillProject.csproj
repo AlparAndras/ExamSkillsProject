@@ -180,7 +180,6 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="Global.asax.cs">
