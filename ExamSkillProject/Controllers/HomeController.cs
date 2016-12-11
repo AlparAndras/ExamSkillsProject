@@ -15,7 +15,6 @@ namespace ExamSkillProject.Controllers
         //hello from roni
         //hello from Alpar 
        
-        private List<Skills> Skills = new List<Skills>();
         public ActionResult Index()
         {
             return View();
@@ -34,48 +33,6 @@ namespace ExamSkillProject.Controllers
 
             return View();
         }
-
-        public ActionResult ShowAllSkill()
-        {            
-            if (Skills.Count < 1)
-            {
-                if (User.IsInRole("Admin"))
-                {
-                    return RedirectToAction("CreateSkill");  
-                }
-                return View();              
-            }
-            Skills = this.db.Skills.ToList();
-            return View(Skills);
-           
-        }
-
-        public ActionResult SkillDetails(int id)
-        {
-            Skills skill = this.db.Skills.Find(id);
-            return View(skill);
-        }
-
-        [HttpGet]
-        public ActionResult CreateSkill()
-        {
-            return View("CreateSkill");
-
-        }
-        [HttpPost]
-        public ActionResult CreateSkill(Skills skills)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View("CreateSkill", skills);
-            }
-           
-            this.db.Skills.Add(skills);
-            db.SaveChanges();
-            Skills = this.db.Skills.ToList();
-            return View("CreateSkill");
-        }
-
 
     }
 }
