@@ -12,13 +12,24 @@
         <h2>List of all Skills</h2>
         <div class="list-group">
             <div style="font-size: 150%;">
-                @foreach (var skill in Model)
+                @if (Model == null)
                 {
-
-                    <div>@Html.ActionLink(skill.SkillsName, "SkillDetails", new { id = skill.SkillsId }) | @skill.SkillsPoints</div><hr />
-
+                    <p>No skills yet were created</p>
                 }
-                <p>@Html.ActionLink("Add New Skill", "CreateSkill")</p>
+                else
+                {
+                    foreach (var skill in Model)
+                    {
+
+                        <div>@Html.ActionLink(skill.SkillsName, "SkillDetails", new { id = skill.SkillsId }) | @skill.SkillsPoints</div><hr />
+
+                    }
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <p>@Html.ActionLink("Add New Skill", "CreateSkill")</p>
+                }
+                
             </div>
         </div>
     </div>

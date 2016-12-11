@@ -38,8 +38,12 @@ namespace ExamSkillProject.Controllers
         public ActionResult ShowAllSkill()
         {            
             if (Skills.Count < 1)
-            {                
-                return RedirectToAction("CreateSkill");                
+            {
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("CreateSkill");  
+                }
+                return View();              
             }
             Skills = this.db.Skills.ToList();
             return View(Skills);
