@@ -180,6 +180,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -266,14 +267,13 @@
     <Content Include="Views\Company\Create.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Home\ShowAllSkill.cshtml" />
-    <Content Include="Views\Home\SkillDetails.cshtml" />
-    <Content Include="Views\Home\CreateSkill.cshtml" />
+    <Content Include="Views\Skill\ShowAllSkill.cshtml" />
+    <Content Include="Views\Skill\SkillDetails.cshtml" />
+    <Content Include="Views\Skill\CreateSkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\" />
-    <Folder Include="Views\Skills\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
