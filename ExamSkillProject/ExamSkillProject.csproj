@@ -181,7 +181,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
-    <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +191,14 @@
     <Compile Include="Migrations\201612101710373_CompanyId.cs" />
     <Compile Include="Migrations\201612101710373_CompanyId.Designer.cs">
       <DependentUpon>201612101710373_CompanyId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121051102_DB not working.cs" />
+    <Compile Include="Migrations\201612121051102_DB not working.Designer.cs">
+      <DependentUpon>201612121051102_DB not working.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121243451_New context.cs" />
+    <Compile Include="Migrations\201612121243451_New context.Designer.cs">
+      <DependentUpon>201612121243451_New context.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -289,6 +296,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612101710373_CompanyId.resx">
       <DependentUpon>201612101710373_CompanyId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121051102_DB not working.resx">
+      <DependentUpon>201612121051102_DB not working.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121243451_New context.resx">
+      <DependentUpon>201612121243451_New context.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

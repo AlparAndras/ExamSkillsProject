@@ -1,5 +1,4 @@
-﻿using ExamSkillProject.DAL;
-using ExamSkillProject.Models;
+﻿using ExamSkillProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -13,8 +12,7 @@ namespace ExamSkillProject.Controllers
 {
     public class CompanyController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
-        private ApplicationDbContext db2 = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         private UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
         // GET: Company
@@ -42,14 +40,15 @@ namespace ExamSkillProject.Controllers
             db.Companies.Add(company);
             db.SaveChanges();
 
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db2));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var currentUser = userManager.FindById(User.Identity.GetUserId());
 
             currentUser.CompanyId = company.CompanyId;
-            db2.SaveChanges();
+            db.SaveChanges();
 
             return View("Index", company);
         }
+
 
         [HttpGet]
         public ActionResult Edit()
@@ -58,7 +57,7 @@ namespace ExamSkillProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit( Company company)
+        public ActionResult Edit( Company company, HttpPostedFileBase file)
         { 
             Company dbCompany = UserCompany();
             company.CompanyId = dbCompany.CompanyId;
