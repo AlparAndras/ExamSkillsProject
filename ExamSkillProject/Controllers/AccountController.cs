@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ExamSkillProject.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ExamSkillProject.Controllers
 {
@@ -50,6 +51,12 @@ namespace ExamSkillProject.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        public ActionResult LoginWithEmployee(LoginEmployeeViewModel model)
+        {
+
+            return View(model);
         }
 
         //
@@ -152,8 +159,14 @@ namespace ExamSkillProject.Controllers
             if (ModelState.IsValid)
             {
 
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
+                //Makes user as an Admin of a Company
+                UserManager.AddToRole(user.Id, "Admin");
+
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);

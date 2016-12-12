@@ -1,5 +1,6 @@
-﻿using ExamSkillProject.DAL;
-using ExamSkillProject.Models;
+﻿using ExamSkillProject.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,11 @@ namespace ExamSkillProject.Controllers
 {
     public class EmployeeController : Controller
     {
+
         private ApplicationDbContext db = new ApplicationDbContext();
-        private List<Employee> employees = new List<Employee>();
+        private List<Employee> employees = new List<Employee>();   
+
+
 
         // GET: Employee
         public ActionResult Index()
@@ -39,10 +43,12 @@ namespace ExamSkillProject.Controllers
         {
             if(ModelState.IsValid)
             {
+                UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var user = userManager.FindById(User.Identity.GetUserId());
+                employee.CompanyId = user.CompanyId;
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-                
             }
             else
             {

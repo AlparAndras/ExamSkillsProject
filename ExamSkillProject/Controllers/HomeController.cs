@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ExamSkillProject.Models;
-using ExamSkillProject.DAL;
+
 
 namespace ExamSkillProject.Controllers
 {

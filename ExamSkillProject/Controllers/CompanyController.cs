@@ -1,5 +1,4 @@
-﻿using ExamSkillProject.DAL;
-using ExamSkillProject.Models;
+﻿using ExamSkillProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -14,12 +13,12 @@ namespace ExamSkillProject.Controllers
     public class CompanyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-   
+        private UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
         // GET: Company
         public ActionResult Index()
         {
 
-             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
              var currentUser = userManager.FindById(User.Identity.GetUserId());
 
             if(currentUser.CompanyId == 0)
@@ -47,7 +46,39 @@ namespace ExamSkillProject.Controllers
             currentUser.CompanyId = company.CompanyId;
             db.SaveChanges();
 
-            return RedirectToAction("Index");
+            return View("Index", company);
+        }
+
+
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            return View( UserCompany() );
+        }
+
+        [HttpPost]
+        public ActionResult Edit( Company company, HttpPostedFileBase file)
+        { 
+            Company dbCompany = UserCompany();
+            company.CompanyId = dbCompany.CompanyId;
+            db.Entry(dbCompany).CurrentValues.SetValues(company);
+            db.SaveChanges();
+            return View("Index", dbCompany);
+        }
+
+
+
+        private ApplicationUser CurrentUser()
+        {
+            ApplicationUser currentUser = userManager.FindById(User.Identity.GetUserId());
+            return currentUser;
+        }
+
+        private Company UserCompany()
+        {
+            ApplicationUser currentUser = CurrentUser();
+            Company currentCompany = db.Companies.Where(i => i.CompanyId == currentUser.CompanyId).First();
+            return currentCompany;
         }
     }
 }

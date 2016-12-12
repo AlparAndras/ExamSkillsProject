@@ -12,5 +12,6 @@ namespace ExamSkillProject.Models
         public string Description { get; set; }
         public string Address { get; set; }
         public string Logo { get; set; }
+        public ICollection<Employee> Employees { get; set; }
     }
 }
