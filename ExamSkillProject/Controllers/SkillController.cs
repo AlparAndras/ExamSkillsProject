@@ -1,5 +1,4 @@
-﻿using ExamSkillProject.DAL;
-using ExamSkillProject.Models;
+﻿using ExamSkillProject.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +17,6 @@ namespace ExamSkillProject.Controllers
         public ActionResult CreateSkill()
         {
             return View("CreateSkill");
-
         }
         // Post: CretaeSkill
         [HttpPost]
@@ -50,18 +48,18 @@ namespace ExamSkillProject.Controllers
             return View("CreateSkill", skill);
         }
  
-        public ActionResult ShowAllSkills(Skill skill)
+        public ActionResult ShowAllSkills()
         {
             if (Skills.Count < 1)
             {
                 if (User.IsInRole("Admin"))
                 {
-                    return RedirectToAction("CreateSkill", skill);
+                    return RedirectToAction("CreateSkill");
                 }
-                return View();
+                return View(Skills);
             }
             Skills = this.db.Skill.ToList();
-            return View(skill);
+            return View(Skills);
 
         }
         public ActionResult SkillDetails(int id)
