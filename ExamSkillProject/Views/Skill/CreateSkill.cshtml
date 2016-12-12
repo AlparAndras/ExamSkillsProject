@@ -1,0 +1,63 @@
+﻿@model ExamSkillProject.Models.Skill
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <div>
+        <h2>Create New Skill</h2>
+     @using (Html.BeginForm("CreateSkill", "Skill", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+            <div class="form-horizontal">
+                <h4>New Skill</h4>
+                <hr />
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="SkillIcon">Icon</label>
+                    <div class="col-md-10">
+                        <!-- IconHolder-->
+ 
+                                <img src="~/Content/Images/avatar1.fw.png" class="media-object" style="width:60px">
+
+
+                                    <div>
+                                        <!-- Html.TextBox("SkillIcon", "", new { type = "file" }) <br /> -->
+
+                                        @Html.TextBoxFor(model => Model.SkillIcon, new { type = "file" }) <br />
+
+
+                                    </div>
+
+                                  
+                             
+                    </div>
+
+                    <label class="control-label col-md-2" for="SkillName">Name</label>
+                    <div class="col-md-10">
+                        <input id="SkillName" name="SkillName" type="text" class="form-control text-box single-line" />
+                    </div>
+                    <label class="control-label col-md-2" for="SkillDescription">Description</label>
+                    <div class="col-md-10">
+                        <input id="SkillDescription" name="SkillDescription" type="text" class="form-control text-box single-line" />
+                    </div>
+                    <label class="control-label col-md-2" for="SkillPoints">Points</label>
+                    <div class="col-md-10">
+                        <input id="SkillPoints" name="SkillPoints" type="text" class="form-control text-box single-line" />
+                    </div>
+
+                </div>
+                <div class="col-md-10">
+                    <input class="btn btn-default" type="submit" value="Create" />
+                </div>
+            </div>
+                                }
+
+        <p>
+            @Html.ActionLink("Back to List", "ShowAllSkills")
+        </p>
+    </div>
+</body>
+</html>

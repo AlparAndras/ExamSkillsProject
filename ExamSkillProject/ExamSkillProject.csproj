@@ -180,7 +180,9 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,17 +194,21 @@
     <Compile Include="Migrations\201612101710373_CompanyId.Designer.cs">
       <DependentUpon>201612101710373_CompanyId.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612121051102_DB not working.cs" />
-    <Compile Include="Migrations\201612121051102_DB not working.Designer.cs">
-      <DependentUpon>201612121051102_DB not working.cs</DependentUpon>
+    <Compile Include="Migrations\201612121203311_SkillIconUpload.cs" />
+    <Compile Include="Migrations\201612121203311_SkillIconUpload.Designer.cs">
+      <DependentUpon>201612121203311_SkillIconUpload.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612121243451_New context.cs" />
-    <Compile Include="Migrations\201612121243451_New context.Designer.cs">
-      <DependentUpon>201612121243451_New context.cs</DependentUpon>
+    <Compile Include="Migrations\201612121257276_s.cs" />
+    <Compile Include="Migrations\201612121257276_s.Designer.cs">
+      <DependentUpon>201612121257276_s.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201612121404425_jj.cs" />
     <Compile Include="Migrations\201612121404425_jj.Designer.cs">
       <DependentUpon>201612121404425_jj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121334351_renamedSkill.cs" />
+    <Compile Include="Migrations\201612121334351_renamedSkill.Designer.cs">
+      <DependentUpon>201612121334351_renamedSkill.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -211,13 +217,14 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyHub.cs" />
-    <Compile Include="Models\Skills.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\avatar1.fw.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -238,8 +245,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Skill\CreateSkill.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -278,16 +286,13 @@
     <Content Include="Views\Company\Create.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Skill\ShowAllSkill.cshtml" />
+    <Content Include="Views\Skill\ShowAllSkills.cshtml" />
     <Content Include="Views\Skill\SkillDetails.cshtml" />
-    <Content Include="Views\Company\Edit.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
-    <Content Include="Views\Account\LoginWithEmployee.cshtml" />
+    <Content Include="Views\Skill\CreateSkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\" />
-    <Folder Include="Views\Skills\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -304,11 +309,11 @@
     <EmbeddedResource Include="Migrations\201612101710373_CompanyId.resx">
       <DependentUpon>201612101710373_CompanyId.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121051102_DB not working.resx">
-      <DependentUpon>201612121051102_DB not working.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612121203311_SkillIconUpload.resx">
+      <DependentUpon>201612121203311_SkillIconUpload.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121243451_New context.resx">
-      <DependentUpon>201612121243451_New context.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612121257276_s.resx">
+      <DependentUpon>201612121257276_s.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612121404425_jj.resx">
       <DependentUpon>201612121404425_jj.cs</DependentUpon>

@@ -37,6 +37,6 @@ namespace ExamSkillProject.Models
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<Skills> Skills { get; set; }
+        public DbSet<Skill> Skill { get; set; }
     }
 }
