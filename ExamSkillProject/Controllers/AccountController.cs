@@ -53,6 +53,12 @@ namespace ExamSkillProject.Controllers
             }
         }
 
+        public ActionResult LoginWithEmployee(LoginEmployeeViewModel model)
+        {
+
+            return View(model);
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]

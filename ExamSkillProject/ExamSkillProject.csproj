@@ -242,6 +242,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Skill\CreateSkill.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -283,12 +284,14 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Skill\ShowAllSkill.cshtml" />
     <Content Include="Views\Skill\SkillDetails.cshtml" />
-    <Content Include="Views\Skill\CreateSkill.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Account\LoginWithEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\" />
+    <Folder Include="Views\Skills\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
