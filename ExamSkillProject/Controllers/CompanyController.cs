@@ -40,7 +40,6 @@ namespace ExamSkillProject.Controllers
             db.Companies.Add(company);
             db.SaveChanges();
 
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var currentUser = userManager.FindById(User.Identity.GetUserId());
 
             currentUser.CompanyId = company.CompanyId;
