@@ -35,5 +35,8 @@ namespace ExamSkillProject.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Skills> Skills { get; set; }
     }
 }

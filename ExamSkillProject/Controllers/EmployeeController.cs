@@ -1,5 +1,4 @@
-﻿using ExamSkillProject.DAL;
-using ExamSkillProject.Models;
+﻿using ExamSkillProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace ExamSkillProject.Controllers
 {
     public class EmployeeController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         private List<Employee> employees = new List<Employee>();
 
 
