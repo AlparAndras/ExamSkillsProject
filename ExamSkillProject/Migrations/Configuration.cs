@@ -29,12 +29,15 @@ namespace ExamSkillProject.Migrations
             //    );
             //
 
-            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            //string role = "Admin";
-            //if(!roleManager.RoleExists(role))
-            //{
-            //    var roleResult = roleManager.Create(new IdentityRole(role));
-            //}
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            string role = "Admin";
+            if (!roleManager.RoleExists(role))
+            {
+                var roleResult = roleManager.Create(new IdentityRole(role));
+            }
+
+
+
         }
     }
 }
