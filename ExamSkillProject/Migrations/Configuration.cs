@@ -17,7 +17,7 @@ namespace ExamSkillProject.Migrations
 
         protected override void Seed(ExamSkillProject.Models.ApplicationDbContext context)
         {
-            Company c = new Company { Name = "Apple", Description = "tete",Address = "Lygten 37" };
+            Company c = new Company { Name = "Apple", Description = "tete", Address = "Lygten 37" };
             context.Companies.Add(c);
             context.SaveChanges();
 
