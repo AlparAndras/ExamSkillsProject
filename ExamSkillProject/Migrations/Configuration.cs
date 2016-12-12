@@ -12,7 +12,7 @@ namespace ExamSkillProject.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(ExamSkillProject.Models.ApplicationDbContext context)

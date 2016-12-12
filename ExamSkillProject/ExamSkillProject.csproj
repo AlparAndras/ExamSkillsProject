@@ -200,13 +200,9 @@
     <Compile Include="Migrations\201612121243451_New context.Designer.cs">
       <DependentUpon>201612121243451_New context.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612121328327_New employee company relationshio.cs" />
-    <Compile Include="Migrations\201612121328327_New employee company relationshio.Designer.cs">
-      <DependentUpon>201612121328327_New employee company relationshio.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612121347526_companyIdAdded.cs" />
-    <Compile Include="Migrations\201612121347526_companyIdAdded.Designer.cs">
-      <DependentUpon>201612121347526_companyIdAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201612121404425_jj.cs" />
+    <Compile Include="Migrations\201612121404425_jj.Designer.cs">
+      <DependentUpon>201612121404425_jj.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -314,11 +310,8 @@
     <EmbeddedResource Include="Migrations\201612121243451_New context.resx">
       <DependentUpon>201612121243451_New context.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121328327_New employee company relationshio.resx">
-      <DependentUpon>201612121328327_New employee company relationshio.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121347526_companyIdAdded.resx">
-      <DependentUpon>201612121347526_companyIdAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612121404425_jj.resx">
+      <DependentUpon>201612121404425_jj.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

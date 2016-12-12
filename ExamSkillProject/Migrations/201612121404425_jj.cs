@@ -3,7 +3,7 @@ namespace ExamSkillProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class companyIdAdded : DbMigration
+    public partial class jj : DbMigration
     {
         public override void Up()
         {
