@@ -13,6 +13,8 @@ namespace ExamSkillProject.Controllers
         private ApplicationContext db = new ApplicationContext();
         private List<Employee> employees = new List<Employee>();
 
+
+
         // GET: Employee
         public ActionResult Index()
         {
