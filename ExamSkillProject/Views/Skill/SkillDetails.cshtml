@@ -1,4 +1,4 @@
-﻿@model ExamSkillProject.Models.Skills
+﻿@model ExamSkillProject.Models.Skill
 
 
 <!DOCTYPE html>
@@ -14,12 +14,33 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
+
+                @Html.DisplayNameFor(model => model.SkillIcon)
+            </dt>
+
+            <dd>
+                @foreach (var imgPath in Directory.GetFiles(Server.MapPath("~/UploadedFiles"), "*.png"))
+                {
+                var img = new FileInfo(imgPath);
+                <img src="@Url.Content(String.Format("~/UploadedFiles/{0}", img.Name))" />
+                }
+
+            </dd>
+            <dt>
               
                 @Html.DisplayNameFor(model => model.SkillName)
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.SkillName)
+            </dd>
+            <dt>
+
+                @Html.DisplayNameFor(model => model.SkillDescription)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SkillDescription)
             </dd>
 
            
@@ -30,8 +51,12 @@
 
 
     </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <p>@Html.ActionLink("Add New Skill", "CreateSkill")</p>
+    }
     <p>
-        @Html.ActionLink("Back to List", "ShowAllSkill")
+        @Html.ActionLink("Back to List", "ShowAllSkills")
     </p>
 </body>
 </html>

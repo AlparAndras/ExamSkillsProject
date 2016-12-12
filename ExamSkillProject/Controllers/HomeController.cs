@@ -10,7 +10,7 @@ namespace ExamSkillProject.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         //Hello from Alpar
         //hello from roni
         //hello from Alpar 

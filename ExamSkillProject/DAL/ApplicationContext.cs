@@ -7,10 +7,8 @@ using System.Web;
 
 namespace ExamSkillProject.DAL
 {
-    public class ApplicationContext : DbContext
-    {
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Skills> Skills { get; set; }
-    }
+    //public class ApplicationContext : DbContext
+    //{
+
+    //}
 }

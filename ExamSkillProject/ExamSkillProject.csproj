@@ -194,6 +194,22 @@
     <Compile Include="Migrations\201612101710373_CompanyId.Designer.cs">
       <DependentUpon>201612101710373_CompanyId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612121203311_SkillIconUpload.cs" />
+    <Compile Include="Migrations\201612121203311_SkillIconUpload.Designer.cs">
+      <DependentUpon>201612121203311_SkillIconUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121257276_s.cs" />
+    <Compile Include="Migrations\201612121257276_s.Designer.cs">
+      <DependentUpon>201612121257276_s.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121304482_s1.cs" />
+    <Compile Include="Migrations\201612121304482_s1.Designer.cs">
+      <DependentUpon>201612121304482_s1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121334351_renamedSkill.cs" />
+    <Compile Include="Migrations\201612121334351_renamedSkill.Designer.cs">
+      <DependentUpon>201612121334351_renamedSkill.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
@@ -201,13 +217,14 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MyHub.cs" />
-    <Compile Include="Models\Skills.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\avatar1.fw.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -228,7 +245,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -267,7 +286,7 @@
     <Content Include="Views\Company\Create.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
-    <Content Include="Views\Skill\ShowAllSkill.cshtml" />
+    <Content Include="Views\Skill\ShowAllSkills.cshtml" />
     <Content Include="Views\Skill\SkillDetails.cshtml" />
     <Content Include="Views\Skill\CreateSkill.cshtml" />
   </ItemGroup>
@@ -289,6 +308,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612101710373_CompanyId.resx">
       <DependentUpon>201612101710373_CompanyId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121203311_SkillIconUpload.resx">
+      <DependentUpon>201612121203311_SkillIconUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121257276_s.resx">
+      <DependentUpon>201612121257276_s.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121304482_s1.resx">
+      <DependentUpon>201612121304482_s1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121334351_renamedSkill.resx">
+      <DependentUpon>201612121334351_renamedSkill.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

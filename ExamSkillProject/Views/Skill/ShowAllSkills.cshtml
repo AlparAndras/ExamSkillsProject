@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ExamSkillProject.Models.Skills>
+﻿@model IEnumerable<ExamSkillProject.Models.Skill>
 
 <!DOCTYPE html>
 
@@ -21,11 +21,11 @@
                     foreach (var skill in Model)
                     {
 
-                        <div>@Html.ActionLink(skill.SkillsName, "SkillDetails", new { id = skill.SkillsId }) | @skill.SkillsPoints</div><hr />
+                        <div>@Html.ActionLink(skill.SkillName, "SkillDetails", new { id = skill.SkillId }) | @skill.SkillPoints</div><hr />
 
                     }
                 }
-                @if (User.IsInRole("Admin"))
+                @if (!User.IsInRole("Admin"))
                 {
                     <p>@Html.ActionLink("Add New Skill", "CreateSkill")</p>
                 }

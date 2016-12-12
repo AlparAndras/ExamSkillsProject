@@ -13,13 +13,13 @@ namespace ExamSkillProject.Controllers
 {
     public class CompanyController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
-        private ApplicationDbContext db2 = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
+   
         // GET: Company
         public ActionResult Index()
         {
 
-             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db2));
+             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
              var currentUser = userManager.FindById(User.Identity.GetUserId());
 
             if(currentUser.CompanyId == 0)
@@ -41,11 +41,11 @@ namespace ExamSkillProject.Controllers
             db.Companies.Add(company);
             db.SaveChanges();
 
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db2));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var currentUser = userManager.FindById(User.Identity.GetUserId());
 
             currentUser.CompanyId = company.CompanyId;
-            db2.SaveChanges();
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }

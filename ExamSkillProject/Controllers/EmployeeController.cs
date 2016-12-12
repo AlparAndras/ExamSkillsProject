@@ -10,7 +10,7 @@ namespace ExamSkillProject.Controllers
 {
     public class EmployeeController : Controller
     {
-        private ApplicationContext db = new ApplicationContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
         private List<Employee> employees = new List<Employee>();
 
         // GET: Employee
