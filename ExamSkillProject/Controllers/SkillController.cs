@@ -16,7 +16,7 @@ namespace ExamSkillProject.Controllers
         [HttpGet]
         public ActionResult CreateSkill()
         {
-            return View("CreateSkill");
+            return View("CreateSkill"); 
         }
         // Post: CretaeSkill
         [HttpPost]
@@ -33,15 +33,16 @@ namespace ExamSkillProject.Controllers
                                 
                                 var fileName = Path.GetFileName(skillFile.FileName);
                                 skill.SkillIcon = Path.Combine(Server.MapPath("~/UploadedFiles"), fileName);
-                                //skillsFile.SaveAs(skills.SkillIcon);
+                                skillFile.SaveAs(skill.SkillIcon);
                                 this.db.Skill.Add(skill);
                                 db.SaveChanges();
+                                Skills = this.db.Skill.ToList();
                             }
                     
                     //this.db.Skill.Add(skill);
                     
                     //Skill skillNew = this.db.Skill.Find(skill.SkillId);
-                    Skills = this.db.Skill.ToList();
+                    
                     return RedirectToAction("SkillDetails", new { id = skill.SkillId });
                  }
             }
@@ -50,6 +51,7 @@ namespace ExamSkillProject.Controllers
  
         public ActionResult ShowAllSkills()
         {
+            Skills = this.db.Skill.ToList();
             if (Skills.Count < 1)
             {
                 if (User.IsInRole("Admin"))
