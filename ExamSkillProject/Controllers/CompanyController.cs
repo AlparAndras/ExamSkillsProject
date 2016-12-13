@@ -48,13 +48,15 @@ namespace ExamSkillProject.Controllers
             return View("Index", company);
         }
 
-
+        
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit()
         {
             return View( UserCompany() );
         }
 
+        
         [HttpPost]
         public ActionResult Edit( Company company, HttpPostedFileBase file)
         { 

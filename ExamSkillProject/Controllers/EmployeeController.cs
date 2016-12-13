@@ -45,8 +45,14 @@ namespace ExamSkillProject.Controllers
             {
                 UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = userManager.FindById(User.Identity.GetUserId());
-                employee.CompanyId = user.CompanyId;
-                db.Employees.Add(employee);
+
+
+                var newUser = new ApplicationUser { UserName = "Rune Lyng", Email = employee.Email };
+                userManager.Create(newUser);
+                newUser.CompanyId = user.CompanyId;
+
+      
+                db.Users.Add(newUser);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

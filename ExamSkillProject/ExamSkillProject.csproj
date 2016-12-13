@@ -186,6 +186,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Microsoft\AspNet\Identity\UserManager.cs" />
     <Compile Include="Migrations\201612092043191_InitialMigrations.cs" />
     <Compile Include="Migrations\201612092043191_InitialMigrations.Designer.cs">
       <DependentUpon>201612092043191_InitialMigrations.cs</DependentUpon>
@@ -209,6 +210,10 @@
     <Compile Include="Migrations\201612121334351_renamedSkill.cs" />
     <Compile Include="Migrations\201612121334351_renamedSkill.Designer.cs">
       <DependentUpon>201612121334351_renamedSkill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612121445399_Problem.cs" />
+    <Compile Include="Migrations\201612121445399_Problem.Designer.cs">
+      <DependentUpon>201612121445399_Problem.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -320,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612121334351_renamedSkill.resx">
       <DependentUpon>201612121334351_renamedSkill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121445399_Problem.resx">
+      <DependentUpon>201612121445399_Problem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
