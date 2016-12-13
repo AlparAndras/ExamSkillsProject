@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace ExamSkillProject.Controllers
 {
+    [Authorize]
     public class CompanyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -28,6 +29,7 @@ namespace ExamSkillProject.Controllers
             return View( db.Companies.Where( i => i.CompanyId == currentUser.CompanyId ).First());
         }
 
+        [Authorize (Roles="Admin")]
         [HttpGet]
         public ActionResult Create()
         {
