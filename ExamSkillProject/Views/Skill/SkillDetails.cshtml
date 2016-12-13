@@ -21,9 +21,14 @@
             <dd>
                 @foreach (var imgPath in Directory.GetFiles(Server.MapPath("~/UploadedFiles"), "*.png"))
                 {
-                var img = new FileInfo(imgPath);
-                <img src="@Url.Content(String.Format("~/UploadedFiles/{0}", img.Name))" />
+                    if(imgPath == Model.SkillIcon)
+                    {
+                        var img = new FileInfo(imgPath);
+                        <img src="@Url.Content(String.Format("~/UploadedFiles/{0}", img.Name))" />
+                    }
+
                 }
+
 
             </dd>
             <dt>

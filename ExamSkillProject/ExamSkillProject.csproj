@@ -182,7 +182,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
-    <Compile Include="DAL\ApplicationContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,13 +202,9 @@
     <Compile Include="Migrations\201612121257276_s.Designer.cs">
       <DependentUpon>201612121257276_s.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612121304482_s1.cs" />
-    <Compile Include="Migrations\201612121304482_s1.Designer.cs">
-      <DependentUpon>201612121304482_s1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612121334351_renamedSkill.cs" />
-    <Compile Include="Migrations\201612121334351_renamedSkill.Designer.cs">
-      <DependentUpon>201612121334351_renamedSkill.cs</DependentUpon>
+    <Compile Include="Migrations\201612121501417_test.cs" />
+    <Compile Include="Migrations\201612121501417_test.Designer.cs">
+      <DependentUpon>201612121501417_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201612121445399_Problem.cs" />
     <Compile Include="Migrations\201612121445399_Problem.Designer.cs">
@@ -297,7 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="UploadedFiles\" />
+    <Folder Include="UploadedFiles\App_LocalResources\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -320,11 +315,8 @@
     <EmbeddedResource Include="Migrations\201612121257276_s.resx">
       <DependentUpon>201612121257276_s.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121304482_s1.resx">
-      <DependentUpon>201612121304482_s1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612121334351_renamedSkill.resx">
-      <DependentUpon>201612121334351_renamedSkill.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612121501417_test.resx">
+      <DependentUpon>201612121501417_test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612121445399_Problem.resx">
       <DependentUpon>201612121445399_Problem.cs</DependentUpon>

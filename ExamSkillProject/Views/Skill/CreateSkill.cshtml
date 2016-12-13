@@ -11,28 +11,22 @@
     <div>
         <h2>Create New Skill</h2>
      @using (Html.BeginForm("CreateSkill", "Skill", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                                {
+     {
             <div class="form-horizontal">
                 <h4>New Skill</h4>
                 <hr />
                 <div class="form-group">
-                    <label class="control-label col-md-2" for="SkillIcon">Icon</label>
+                    <label class="control-label col-md-2" name="SkillIcon" for="SkillIcon">Icon</label>
                     <div class="col-md-10">
                         <!-- IconHolder-->
- 
-                                <img src="~/Content/Images/avatar1.fw.png" class="media-object" style="width:60px">
-
-
+                        <img src="~/Content/Images/avatar1.fw.png" class="media-object" style="width:60px">        
+                        
                                     <div>
                                         <!-- Html.TextBox("SkillIcon", "", new { type = "file" }) <br /> -->
 
-                                        @Html.TextBoxFor(model => Model.SkillIcon, new { type = "file" }) <br />
+                                        @Html.TextBox("SkillIcon", "Skill", new { type = "file" }) <br />
 
-
-                                    </div>
-
-                                  
-                             
+                                    </div>                        
                     </div>
 
                     <label class="control-label col-md-2" for="SkillName">Name</label>
@@ -53,7 +47,7 @@
                     <input class="btn btn-default" type="submit" value="Create" />
                 </div>
             </div>
-                                }
+         }
 
         <p>
             @Html.ActionLink("Back to List", "ShowAllSkills")
