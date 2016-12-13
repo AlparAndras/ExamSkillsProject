@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201612121445399_Problem.Designer.cs">
       <DependentUpon>201612121445399_Problem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612131302405_skill+companyId.cs" />
+    <Compile Include="Migrations\201612131302405_skill+companyId.Designer.cs">
+      <DependentUpon>201612131302405_skill+companyId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201612131516201_Company-User-Relationship.cs" />
     <Compile Include="Migrations\201612131516201_Company-User-Relationship.Designer.cs">
       <DependentUpon>201612131516201_Company-User-Relationship.cs</DependentUpon>
@@ -321,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612121445399_Problem.resx">
       <DependentUpon>201612121445399_Problem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612131302405_skill+companyId.resx">
+      <DependentUpon>201612131302405_skill+companyId.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612131516201_Company-User-Relationship.resx">
       <DependentUpon>201612131516201_Company-User-Relationship.cs</DependentUpon>
