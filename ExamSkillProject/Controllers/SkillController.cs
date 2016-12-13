@@ -38,13 +38,14 @@ namespace ExamSkillProject.Controllers
                                 db.SaveChanges();
                                 Skills = this.db.Skill.ToList();
                             }
-                    
-                    //this.db.Skill.Add(skill);
-                    
-                    //Skill skillNew = this.db.Skill.Find(skill.SkillId);
-                    
-                    return RedirectToAction("SkillDetails", new { id = skill.SkillId });
+                       
+                        //this.db.Skill.Add(skill);
+
+                        //Skill skillNew = this.db.Skill.Find(skill.SkillId);
+
+                        return RedirectToAction("SkillDetails", new { id = skill.SkillId });   
                  }
+              
             }
             return View("CreateSkill", skill);
         }
@@ -66,6 +67,7 @@ namespace ExamSkillProject.Controllers
         }
         public ActionResult SkillDetails(int id)
         {
+            Skills = this.db.Skill.ToList();
             Skill skill = this.db.Skill.Find(id);
             return View(skill);
         }
