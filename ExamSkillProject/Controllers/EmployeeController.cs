@@ -47,8 +47,8 @@ namespace ExamSkillProject.Controllers
                 var user = userManager.FindById(User.Identity.GetUserId());
 
 
-                var newUser = new ApplicationUser { UserName = "Rune Lyng", Email = employee.Email };
-                userManager.Create(newUser);
+                var newUser = new ApplicationUser { UserName = employee.FirstName, Email = employee.Email };
+                userManager.Create(newUser, "Passw0rd!");
                 newUser.CompanyId = user.CompanyId;
 
       
