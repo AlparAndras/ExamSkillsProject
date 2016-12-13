@@ -21,6 +21,7 @@ namespace ExamSkillProject.Models
             return userIdentity;
         }
         public int CompanyId { get; set; }
+   
         // public virtual ICollection<Test> tests { get; set; }
     }
 

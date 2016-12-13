@@ -10,6 +10,7 @@ using System.Web.Security;
 
 namespace ExamSkillProject.Controllers
 {
+    [Authorize]
     public class CompanyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -28,6 +29,7 @@ namespace ExamSkillProject.Controllers
             return View( db.Companies.Where( i => i.CompanyId == currentUser.CompanyId ).First());
         }
 
+        [Authorize (Roles="Admin")]
         [HttpGet]
         public ActionResult Create()
         {
@@ -40,21 +42,30 @@ namespace ExamSkillProject.Controllers
             db.Companies.Add(company);
             db.SaveChanges();
 
-            var currentUser = userManager.FindById(User.Identity.GetUserId());
 
-            currentUser.CompanyId = company.CompanyId;
+            var currentUser = db.Users.Find(User.Identity.GetUserId());
+            ApplicationUser newUser = db.Users.Find(User.Identity.GetUserId());
+
+            newUser.CompanyId = company.CompanyId;
+            newUser.Id = currentUser.Id;
+
+            db.Entry(currentUser).CurrentValues.SetValues(newUser);
+
             db.SaveChanges();
+           
 
             return View("Index", company);
         }
 
-
+        
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit()
         {
             return View( UserCompany() );
         }
 
+        
         [HttpPost]
         public ActionResult Edit( Company company, HttpPostedFileBase file)
         { 

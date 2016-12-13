@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -45,9 +46,9 @@ namespace ExamSkillProject.Controllers
             {
                 UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = userManager.FindById(User.Identity.GetUserId());
-                employee.CompanyId = user.CompanyId;
-                db.Employees.Add(employee);
-                db.SaveChanges();
+
+                var newUser = new ApplicationUser { UserName = employee.FirstName, Email = employee.Email, CompanyId = user.CompanyId };
+                userManager.Create(newUser, "Passw0rd!");   
                 return RedirectToAction("Index");
             }
             else
