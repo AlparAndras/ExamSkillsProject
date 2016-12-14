@@ -16,6 +16,9 @@ namespace ExamSkillProject.Models
         public int SkillPoints { get; set; }
 
         public string SkillDescription { get; set; }
+
+        public int CompanyId { get; set; }
+        public Company company { get; set; }
    
 
 
