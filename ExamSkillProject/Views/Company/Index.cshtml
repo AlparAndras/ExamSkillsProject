@@ -12,6 +12,8 @@
         <p>@Model.Description</p>
         <p>@Model.Address</p>
 
+        <img src= "@Url.Content($"~/UploadedFiles/{Model.Icon}")" alt="Alternate Text" />
+
         if (User.IsInRole("Admin"))
         {
             @Html.ActionLink("EDIT COMPANY PROFILE", "Edit", "Company", new { }, null);
