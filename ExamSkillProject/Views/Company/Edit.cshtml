@@ -3,7 +3,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form",  enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -29,6 +29,12 @@
     </div>
 
 
+    <div class="form-group">
+        @Html.Label("File", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("file", "", new { type = "file", @class = "form-control" }) <br />
+        </div>
+    </div>
 
 
 

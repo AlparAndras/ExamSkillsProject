@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -40,23 +41,42 @@ namespace ExamSkillProject.Controllers
         [HttpPost]
         public ActionResult Create(Company company, HttpPostedFileBase file)
         {
+            if (ModelState.IsValid)
+            {
+                if (file != null) {
 
-            db.Companies.Add(company);
-            db.SaveChanges();
+                    if (file.ContentLength > 0)
+                    {
+                        string _FileName = Path.GetFileName(file.FileName);
+                        string _FileExtension = Path.GetExtension(file.FileName);
 
+                        string _NewFileName = Regex.Replace(company.Name.ToLower(), @"[^A-Za-z0-9]+", "-");
+                        _FileName = $"{ _NewFileName }-logo{ _FileExtension }";
 
-            var currentUser = db.Users.Find(User.Identity.GetUserId());
-            ApplicationUser newUser = db.Users.Find(User.Identity.GetUserId());
+                        string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+               
+                        company.Icon = _FileName;
+                        file.SaveAs(_path); 
+                    }
+                }
 
-            newUser.CompanyId = company.CompanyId;
-            newUser.Id = currentUser.Id;
+                db.Companies.Add(company);
+                db.SaveChanges();
 
-            db.Entry(currentUser).CurrentValues.SetValues(newUser);
+                var currentUser = db.Users.Find(User.Identity.GetUserId());
+                ApplicationUser newUser = db.Users.Find(User.Identity.GetUserId());
 
-            db.SaveChanges();
-           
+                newUser.CompanyId = company.CompanyId;
+                newUser.Id = currentUser.Id;
 
-            return View("Index", company);
+                db.Entry(currentUser).CurrentValues.SetValues(newUser);
+
+                db.SaveChanges();
+
+                return View("Index", company);
+            }
+            return View();
+
         }
 
         
@@ -70,7 +90,24 @@ namespace ExamSkillProject.Controllers
         
         [HttpPost]
         public ActionResult Edit( Company company, HttpPostedFileBase file)
-        { 
+        {
+            if (file != null)
+            {
+
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _FileExtension = Path.GetExtension(file.FileName);
+
+                    string _NewFileName = Regex.Replace(company.Name.ToLower(), @"[^A-Za-z0-9]+", "-");
+                    _FileName = $"{ _NewFileName }-logo{ _FileExtension }";
+
+                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+
+                    company.Icon = _FileName;
+                    file.SaveAs(_path);
+                }
+            }
             Company dbCompany = UserCompany();
             company.CompanyId = dbCompany.CompanyId;
             db.Entry(dbCompany).CurrentValues.SetValues(company);
