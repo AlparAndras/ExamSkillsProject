@@ -43,14 +43,21 @@ namespace ExamSkillProject.Controllers
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(Employee employee)
+        public ActionResult Create(ApplicationUser employee)
         {
             if(ModelState.IsValid)
             {
                 UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = userManager.FindById(User.Identity.GetUserId());
 
-                var newUser = new ApplicationUser { UserName = employee.Email, Email = employee.Email, CompanyId = user.CompanyId };
+                ApplicationUser newUser = new ApplicationUser {
+                    UserName = employee.Email,
+                    Email = employee.Email,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    CompanyId = user.CompanyId
+                };
+
                 userManager.Create(newUser, "Passw0rd!");   
                 return RedirectToAction("Index");
             }
