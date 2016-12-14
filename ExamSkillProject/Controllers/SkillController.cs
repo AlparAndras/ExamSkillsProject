@@ -19,6 +19,7 @@ namespace ExamSkillProject.Controllers
             return View("CreateSkill"); 
         }
         // Post: CretaeSkill
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult CreateSkill(Skill skill)
         {
