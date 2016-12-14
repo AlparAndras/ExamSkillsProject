@@ -41,14 +41,6 @@ namespace ExamSkillProject.Controllers
         public ActionResult Create(Company company, HttpPostedFileBase file)
         {
 
-            if (file.ContentLength > 0)
-            {
-                string _FileName = Path.GetFileName(file.FileName);
-                string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
-
-                company.Icon = _path;
-                file.SaveAs(_path);
-            }
             db.Companies.Add(company);
             db.SaveChanges();
 
