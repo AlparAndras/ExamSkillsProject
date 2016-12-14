@@ -186,9 +186,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Microsoft\AspNet\Identity\UserManager.cs" />
-    <Compile Include="Migrations\201612140056430_skills+companyIDresetv0.cs" />
-    <Compile Include="Migrations\201612140056430_skills+companyIDresetv0.Designer.cs">
-      <DependentUpon>201612140056430_skills+companyIDresetv0.cs</DependentUpon>
+    <Compile Include="Migrations\201612141057213_Skill.cs" />
+    <Compile Include="Migrations\201612141057213_Skill.Designer.cs">
+      <DependentUpon>201612141057213_Skill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612141151104_Change Logo into Icon in Company table.cs" />
+    <Compile Include="Migrations\201612141151104_Change Logo into Icon in Company table.Designer.cs">
+      <DependentUpon>201612141151104_Change Logo into Icon in Company table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -297,8 +301,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612140056430_skills+companyIDresetv0.resx">
-      <DependentUpon>201612140056430_skills+companyIDresetv0.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612141057213_Skill.resx">
+      <DependentUpon>201612141057213_Skill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612141151104_Change Logo into Icon in Company table.resx">
+      <DependentUpon>201612141151104_Change Logo into Icon in Company table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

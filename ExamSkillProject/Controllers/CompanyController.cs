@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,8 +38,17 @@ namespace ExamSkillProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Company company)
+        public ActionResult Create(Company company, HttpPostedFileBase file)
         {
+
+            if (file.ContentLength > 0)
+            {
+                string _FileName = Path.GetFileName(file.FileName);
+                string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
+
+                company.Icon = _path;
+                file.SaveAs(_path);
+            }
             db.Companies.Add(company);
             db.SaveChanges();
 

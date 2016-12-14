@@ -7,6 +7,9 @@
 
     <h4>Create company</h4>
     <hr />
+
+
+
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
@@ -25,6 +28,13 @@
         @Html.LabelFor(m => m.Address, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.EditorFor(m => m.Address, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("File", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("file", "", new { type = "file", @class = "form-control" }) <br />
         </div>
     </div>
 

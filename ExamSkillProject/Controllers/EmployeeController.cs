@@ -48,7 +48,7 @@ namespace ExamSkillProject.Controllers
                 var user = userManager.FindById(User.Identity.GetUserId());
 
                 var newUser = new ApplicationUser { UserName = employee.Email, Email = employee.Email, CompanyId = user.CompanyId };
-                userManager.Create(newUser, "Passw0rd!");   
+                userManager.Create(newUser, "123");   
                 return RedirectToAction("Index");
             }
             else

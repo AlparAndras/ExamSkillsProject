@@ -7,18 +7,18 @@ namespace ExamSkillProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class skillscompanyIDresetv0 : IMigrationMetadata
+    public sealed partial class Skill : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(skillscompanyIDresetv0));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Skill));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612140056430_skills+companyIDresetv0"; }
+            get { return "201612141057213_Skill"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target
