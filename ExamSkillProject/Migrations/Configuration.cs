@@ -1,5 +1,7 @@
 namespace ExamSkillProject.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +28,12 @@ namespace ExamSkillProject.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            string role = "Admin";
+            if(!roleManager.RoleExists(role))
+            {
+                var roleResult = roleManager.Create(new IdentityRole(role));
+            }
         }
     }
 }
