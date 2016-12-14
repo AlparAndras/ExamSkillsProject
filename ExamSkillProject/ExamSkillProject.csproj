@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201612141151104_Change Logo into Icon in Company table.Designer.cs">
       <DependentUpon>201612141151104_Change Logo into Icon in Company table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612142017106_Add first and last name to USER model.cs" />
+    <Compile Include="Migrations\201612142017106_Add first and last name to USER model.Designer.cs">
+      <DependentUpon>201612142017106_Add first and last name to USER model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
@@ -308,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612141151104_Change Logo into Icon in Company table.resx">
       <DependentUpon>201612141151104_Change Logo into Icon in Company table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612142017106_Add first and last name to USER model.resx">
+      <DependentUpon>201612142017106_Add first and last name to USER model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
