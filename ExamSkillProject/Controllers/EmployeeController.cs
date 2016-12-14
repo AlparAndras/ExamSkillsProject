@@ -21,14 +21,17 @@ namespace ExamSkillProject.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            employees = db.Employees.ToList();
-            return View(employees);
+            
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var user = userManager.FindById(User.Identity.GetUserId());
+
+            return View(db.Users.Where( i => i.CompanyId == user.CompanyId));
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            Employee employee = db.Employees.Find(id);
+            ApplicationUser employee = db.Users.Find(id);
             return View(employee);
         }
 
@@ -48,7 +51,7 @@ namespace ExamSkillProject.Controllers
                 var user = userManager.FindById(User.Identity.GetUserId());
 
                 var newUser = new ApplicationUser { UserName = employee.Email, Email = employee.Email, CompanyId = user.CompanyId };
-                userManager.Create(newUser, "123");   
+                userManager.Create(newUser, "Passw0rd!");   
                 return RedirectToAction("Index");
             }
             else

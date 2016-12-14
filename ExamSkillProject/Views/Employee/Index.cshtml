@@ -1,9 +1,5 @@
-﻿@model IEnumerable<ExamSkillProject.Models.Employee>
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model IEnumerable<ExamSkillProject.Models.ApplicationUser>
 
-<h2>Index</h2>
 
 <h1>Hello from employee</h1>
 
@@ -11,7 +7,7 @@
 {
     <li>
         @Html.DisplayFor(model => item.Email)
-        @Html.ActionLink("Details", "Details", new { id = item.EmployeeID})
+        @Html.ActionLink("Details", "Details", new { id = item.Id})
     </li>
 }
 

@@ -1,7 +1,7 @@
 ﻿@model ExamSkillProject.Models.Company
 
 
-<h2>Edit</h2>
+<h1>Edit</h1>
 
 @using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form",  enctype = "multipart/form-data" }))
 {
@@ -42,9 +42,10 @@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Save changes" class="btn btn-primary" />
+            @Html.ActionLink("CANCEL", "Index", "Company", new { }, new { @class = "btn btn-default" })
         </div>
     </div>
-
+ 
 
 
 }
