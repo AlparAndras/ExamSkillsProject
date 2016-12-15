@@ -25,7 +25,12 @@ namespace ExamSkillProject.Controllers
             UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var user = userManager.FindById(User.Identity.GetUserId());
 
-            return View(db.Users.Where( i => i.CompanyId == user.CompanyId));
+            if (user.CompanyId != 0) {
+                return View(db.Users.Where(i => i.CompanyId == user.CompanyId));
+            }
+
+            return View();
+
         }
 
         // GET: Employee/Details/5
@@ -34,6 +39,7 @@ namespace ExamSkillProject.Controllers
             ApplicationUser employee = db.Users.Find(id);
             return View(employee);
         }
+
 
         // GET: Employee/Create
         public ActionResult Create()
@@ -45,7 +51,10 @@ namespace ExamSkillProject.Controllers
         [HttpPost]
         public ActionResult Create(ApplicationUser employee)
         {
-            if(ModelState.IsValid)
+
+
+
+            if (ModelState.IsValid)
             {
                 UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = userManager.FindById(User.Identity.GetUserId());
@@ -57,8 +66,10 @@ namespace ExamSkillProject.Controllers
                     LastName = employee.LastName,
                     CompanyId = user.CompanyId
                 };
+                string password = System.Web.Security.Membership.GeneratePassword(10, 1);
 
-                userManager.Create(newUser, "Passw0rd!");   
+                userManager.Create(newUser, password);
+                return Content(password);
                 return RedirectToAction("Index");
             }
             else
