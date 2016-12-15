@@ -66,8 +66,7 @@ namespace ExamSkillProject.Controllers
                     LastName = model.LastName,
                     CompanyId = user.CompanyId
                 };
-                
-
+               
                 string password = System.Web.Security.Membership.GeneratePassword(10, 1);
 
 

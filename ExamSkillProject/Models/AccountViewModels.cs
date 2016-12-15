@@ -127,6 +127,9 @@ namespace ExamSkillProject.Models
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
         [Display(Name = "Lastname")]
         public string LastName { get; set; }
+
+        [Display(Name = "Picture")]
+        public string Picture { get; set; }
     }
 
 

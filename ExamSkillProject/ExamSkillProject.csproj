@@ -185,7 +185,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Helpers\FileUpload.cs" />
+    <Compile Include="Helpers\FileUpload.cs" />
     <Compile Include="Microsoft\AspNet\Identity\UserManager.cs" />
     <Compile Include="Migrations\201612141151104_Change Logo into Icon in Company table.cs" />
     <Compile Include="Migrations\201612141151104_Change Logo into Icon in Company table.Designer.cs">
@@ -306,6 +306,8 @@
     <Content Include="Views\Skill\CreateSkill.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Home\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
