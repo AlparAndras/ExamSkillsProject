@@ -24,6 +24,7 @@ namespace ExamSkillProject.Models
         public int CompanyId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Picture { get; set; }
 
         // public virtual ICollection<Test> tests { get; set; }
     }

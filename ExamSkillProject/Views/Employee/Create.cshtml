@@ -1,7 +1,4 @@
-﻿@model ExamSkillProject.Models.Employee
-@{
-    ViewBag.Title = "Create";
-}
+﻿@model ExamSkillProject.Models.ApplicationUser
 
 
 @*@using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -13,6 +10,25 @@
 
     </div>
 }*@
+
+@if (Model != null)
+{
+    <p>Employee was successfully added.</p>
+    <dl>
+        <dt>First name</dt>
+        <dd>@Model.FirstName</dd>
+        <dt>Last name</dt>
+        <dd>@Model.LastName</dd>
+
+        <dt>Email name</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>Password</dt>
+        <dd>@ViewBag.password</dd>
+    </dl>
+}
+else
+{
 
 <form action="" method="post">
     <div class="form-horizontal">
@@ -46,9 +62,10 @@
     </div>
 
 </form>
-    
+
+}
 
 
 
 
-@Html.ActionLink("Index", "Index")
+@Html.ActionLink("Back", "Index")
