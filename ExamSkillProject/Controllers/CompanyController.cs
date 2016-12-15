@@ -1,4 +1,5 @@
-﻿using ExamSkillProject.Models;
+﻿using ExamSkillProject.Helpers;
+using ExamSkillProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -28,7 +29,7 @@ namespace ExamSkillProject.Controllers
             {
                 return View();
             }
-            return View( db.Companies.Where( i => i.CompanyId == currentUser.CompanyId ).First());
+            return View( db.Companies.Where( i => i.CompanyId == currentUser.CompanyId ).First() );
         }
 
         [Authorize (Roles="Admin")]
@@ -43,21 +44,11 @@ namespace ExamSkillProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file != null) {
 
-                    if (file.ContentLength > 0)
-                    {
-                        string _FileName = Path.GetFileName(file.FileName);
-                        string _FileExtension = Path.GetExtension(file.FileName);
-
-                        string _NewFileName = Regex.Replace(company.Name.ToLower(), @"[^A-Za-z0-9]+", "-");
-                        _FileName = $"{ _NewFileName }-logo{ _FileExtension }";
-
-                        string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
-               
-                        company.Icon = _FileName;
-                        file.SaveAs(_path); 
-                    }
+                FileUpload FileUploader = new FileUpload();
+                string result = FileUploader.Upload(company.Name, file);
+                if (result != null) {
+                    company.Icon = result;
                 }
 
                 db.Companies.Add(company);
@@ -91,25 +82,18 @@ namespace ExamSkillProject.Controllers
         [HttpPost]
         public ActionResult Edit( Company company, HttpPostedFileBase file)
         {
-            if (file != null)
+
+            //Upload image and assign image name to company icon
+            FileUpload FileUploader = new FileUpload();
+            string result = FileUploader.Upload(company.Name, file);
+            if (result != null)
             {
-
-                if (file.ContentLength > 0)
-                {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _FileExtension = Path.GetExtension(file.FileName);
-
-                    string _NewFileName = Regex.Replace(company.Name.ToLower(), @"[^A-Za-z0-9]+", "-");
-                    _FileName = $"{ _NewFileName }-logo{ _FileExtension }";
-
-                    string _path = Path.Combine(Server.MapPath("~/UploadedFiles"), _FileName);
-
-                    company.Icon = _FileName;
-                    file.SaveAs(_path);
-                }
+                company.Icon = result;
             }
+
             Company dbCompany = UserCompany();
             company.CompanyId = dbCompany.CompanyId;
+
             db.Entry(dbCompany).CurrentValues.SetValues(company);
             db.SaveChanges();
             return View("Index", dbCompany);

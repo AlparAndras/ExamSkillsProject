@@ -1,4 +1,5 @@
-﻿using ExamSkillProject.Models;
+﻿using ExamSkillProject.Helpers;
+using ExamSkillProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -59,6 +60,8 @@ namespace ExamSkillProject.Controllers
                 UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = userManager.FindById(User.Identity.GetUserId());
 
+
+
                 ApplicationUser newUser = new ApplicationUser {
                     UserName = employee.Email,
                     Email = employee.Email,
@@ -66,6 +69,7 @@ namespace ExamSkillProject.Controllers
                     LastName = employee.LastName,
                     CompanyId = user.CompanyId
                 };
+
                 string password = System.Web.Security.Membership.GeneratePassword(10, 1);
 
                 userManager.Create(newUser, password);
