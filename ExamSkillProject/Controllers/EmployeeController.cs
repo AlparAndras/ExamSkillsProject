@@ -1,4 +1,5 @@
-﻿using ExamSkillProject.Models;
+﻿using ExamSkillProject.Helpers;
+using ExamSkillProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -21,16 +22,25 @@ namespace ExamSkillProject.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            employees = db.Employees.ToList();
-            return View(employees);
+            
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var user = userManager.FindById(User.Identity.GetUserId());
+
+            if (user.CompanyId != 0) {
+                return View(db.Users.Where(i => i.CompanyId == user.CompanyId));
+            }
+
+            return View();
+
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            Employee employee = db.Employees.Find(id);
+            ApplicationUser employee = db.Users.Find(id);
             return View(employee);
         }
+
 
         // GET: Employee/Create
         public ActionResult Create()
@@ -40,15 +50,30 @@ namespace ExamSkillProject.Controllers
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(Employee employee)
+        public ActionResult Create(ApplicationUser employee)
         {
-            if(ModelState.IsValid)
+
+
+
+            if (ModelState.IsValid)
             {
                 UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = userManager.FindById(User.Identity.GetUserId());
 
-                var newUser = new ApplicationUser { UserName = employee.Email, Email = employee.Email, CompanyId = user.CompanyId };
-                userManager.Create(newUser, "123");   
+
+
+                ApplicationUser newUser = new ApplicationUser {
+                    UserName = employee.Email,
+                    Email = employee.Email,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    CompanyId = user.CompanyId
+                };
+
+                string password = System.Web.Security.Membership.GeneratePassword(10, 1);
+
+                userManager.Create(newUser, password);
+                return Content(password);
                 return RedirectToAction("Index");
             }
             else

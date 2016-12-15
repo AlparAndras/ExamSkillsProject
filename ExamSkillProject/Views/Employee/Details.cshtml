@@ -1,19 +1,17 @@
-﻿@model ExamSkillProject.Models.Employee
+﻿@model ExamSkillProject.Models.ApplicationUser
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h1>Employee details</h1>
 
-<table>
-    <tr class="table">
-        <td>Created</td>
-        <td>@Html.DisplayFor(i => i.FirstName)</td>
-        <td>@Html.DisplayFor(i => i.LastName)</td>
-        <td>@Html.DisplayFor(i => i.Email)</td>
-    </tr>
+<dl>
+    <dt>Full name</dt>
+    <dd>@Model.FirstName @Model.LastName</dd>
+    <dt>Email</dt>
+    <dd>@Model.Email</dd>
+</dl>
 
-</table>
 
 @Html.ActionLink("Back", "Index")
 

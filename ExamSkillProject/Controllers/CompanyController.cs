@@ -1,10 +1,12 @@
-﻿using ExamSkillProject.Models;
+﻿using ExamSkillProject.Helpers;
+using ExamSkillProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -27,7 +29,7 @@ namespace ExamSkillProject.Controllers
             {
                 return View();
             }
-            return View( db.Companies.Where( i => i.CompanyId == currentUser.CompanyId ).First());
+            return View( db.Companies.Where( i => i.CompanyId == currentUser.CompanyId ).First() );
         }
 
         [Authorize (Roles="Admin")]
@@ -40,23 +42,32 @@ namespace ExamSkillProject.Controllers
         [HttpPost]
         public ActionResult Create(Company company, HttpPostedFileBase file)
         {
+            if (ModelState.IsValid)
+            {
 
-            db.Companies.Add(company);
-            db.SaveChanges();
+                FileUpload FileUploader = new FileUpload();
+                string result = FileUploader.Upload(company.Name, file);
+                if (result != null) {
+                    company.Icon = result;
+                }
 
+                db.Companies.Add(company);
+                db.SaveChanges();
 
-            var currentUser = db.Users.Find(User.Identity.GetUserId());
-            ApplicationUser newUser = db.Users.Find(User.Identity.GetUserId());
+                var currentUser = db.Users.Find(User.Identity.GetUserId());
+                ApplicationUser newUser = db.Users.Find(User.Identity.GetUserId());
 
-            newUser.CompanyId = company.CompanyId;
-            newUser.Id = currentUser.Id;
+                newUser.CompanyId = company.CompanyId;
+                newUser.Id = currentUser.Id;
 
-            db.Entry(currentUser).CurrentValues.SetValues(newUser);
+                db.Entry(currentUser).CurrentValues.SetValues(newUser);
 
-            db.SaveChanges();
-           
+                db.SaveChanges();
 
-            return View("Index", company);
+                return View("Index", company);
+            }
+            return View();
+
         }
 
         
@@ -70,9 +81,19 @@ namespace ExamSkillProject.Controllers
         
         [HttpPost]
         public ActionResult Edit( Company company, HttpPostedFileBase file)
-        { 
+        {
+
+            //Upload image and assign image name to company icon
+            FileUpload FileUploader = new FileUpload();
+            string result = FileUploader.Upload(company.Name, file);
+            if (result != null)
+            {
+                company.Icon = result;
+            }
+
             Company dbCompany = UserCompany();
             company.CompanyId = dbCompany.CompanyId;
+
             db.Entry(dbCompany).CurrentValues.SetValues(company);
             db.SaveChanges();
             return View("Index", dbCompany);

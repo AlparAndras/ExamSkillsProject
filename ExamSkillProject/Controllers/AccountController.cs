@@ -169,7 +169,15 @@ namespace ExamSkillProject.Controllers
                 //Add a role to a User
                 var result = UserManager.AddToRole(User.Identity.GetUserId(), "Admin");  */
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                
+                ApplicationUser user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 
                 //Makes user as an Admin of a Company

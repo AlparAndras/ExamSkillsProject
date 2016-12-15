@@ -1,9 +1,9 @@
 ﻿@model ExamSkillProject.Models.Company
 
 
-<h2>Edit</h2>
+<h1>Edit</h1>
 
-@using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form",  enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -29,15 +29,23 @@
     </div>
 
 
+    <img src= "@Url.Content($"~/UploadedFiles/{Model.Icon}")" alt="Alternate Text" />
+    <div class="form-group">
+        @Html.Label("File", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("file", "", new { type = "file", @class = "form-control" }) <br />
+        </div>
+    </div>
 
 
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Save changes" class="btn btn-primary" />
+            @Html.ActionLink("CANCEL", "Index", "Company", new { }, new { @class = "btn btn-default" })
         </div>
     </div>
-
+ 
 
 
 }

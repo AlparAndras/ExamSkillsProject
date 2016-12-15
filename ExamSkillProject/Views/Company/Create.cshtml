@@ -1,14 +1,14 @@
 ﻿@model ExamSkillProject.Models.Company
 
 
-@using (Html.BeginForm("Create", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Create", "Company", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Create company</h4>
+    <h1>Create company</h1>
     <hr />
 
-
+    <h1>@ViewBag.Message</h1>
 
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
@@ -31,6 +31,12 @@
         </div>
     </div>
 
+    <div class="form-group">
+        @Html.Label("File", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("file", "", new { type = "file", @class = "form-control" }) <br />
+        </div>
+    </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
