@@ -71,6 +71,13 @@
                 </div>
             </div>
             <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", type="date" } })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="ADD EMPLOYEE" class="btn btn-primary" />
                     @Html.ActionLink("CANCEL", "Index", "Employee", new { }, new { @class = "btn btn-default" })

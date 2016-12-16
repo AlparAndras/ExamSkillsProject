@@ -175,7 +175,9 @@ namespace ExamSkillProject.Controllers
                     UserName = model.Email,
                     Email = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
+                    StartDate = DateTime.Now
+                    
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password); 

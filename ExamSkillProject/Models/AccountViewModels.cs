@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ExamSkillProject.Models
@@ -99,6 +100,9 @@ namespace ExamSkillProject.Models
         [Display(Name = "Lastname")]
         public string LastName { get; set; }
 
+        [Display(Name = "Start date")]
+        public string StartDate { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         [DataType(DataType.Password)]
@@ -130,6 +134,9 @@ namespace ExamSkillProject.Models
 
         [Display(Name = "Picture")]
         public string Picture { get; set; }
+
+        [Required]
+        public DateTime StartDate { get;  set; }
     }
 
 

@@ -221,6 +221,14 @@
     <Compile Include="Migrations\201612161131456_Update company model.Designer.cs">
       <DependentUpon>201612161131456_Update company model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612161928127_User start date.cs" />
+    <Compile Include="Migrations\201612161928127_User start date.Designer.cs">
+      <DependentUpon>201612161928127_User start date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612161936185_Start date validation.cs" />
+    <Compile Include="Migrations\201612161936185_Start date validation.Designer.cs">
+      <DependentUpon>201612161936185_Start date validation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Assignment.cs" />
@@ -357,6 +365,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612161131456_Update company model.resx">
       <DependentUpon>201612161131456_Update company model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612161928127_User start date.resx">
+      <DependentUpon>201612161928127_User start date.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612161936185_Start date validation.resx">
+      <DependentUpon>201612161936185_Start date validation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
