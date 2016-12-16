@@ -102,5 +102,12 @@ img {
 
 .center-block {
     display:block;
-    margin:auto;
+    margin:1em auto;
+}
+table{
+    text-align:left;
+}
+table img {
+    width:25px;
+    height:25px;
 }
