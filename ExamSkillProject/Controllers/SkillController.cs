@@ -69,16 +69,19 @@ namespace ExamSkillProject.Controllers
             Skill skill = this.db.Skill.Find(id);
             return View(skill);
         }
-        [HttpPost]
-        public ActionResult AssignSkill(Assignment assignment)
-        {
-            return View("Assignment");
-        }
+
         [HttpGet]
         public ActionResult AssignSkill(Assignment assignment)
         {
             return View("SkillDetails", assignment.SkillId);
         }
+
+        //[HttpPost]
+        //public ActionResult AssignSkill(Assignment assignment)
+        //{
+        //    return View("Assignment");
+        //}
+
 
     }
 }
