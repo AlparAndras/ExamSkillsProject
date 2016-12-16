@@ -1,71 +1,88 @@
 ﻿@model ExamSkillProject.Models.ApplicationUser
 
+<h1>Add employee</h1>
 
-@*@using (Html.BeginForm("UploadFile", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div class="form-group">
-        @Html.TextBox("file", "", new { type = "file" }) <br />
-        <input type="submit" value="Upload" />
-        @ViewBag.Message
+<div class="info-data">
 
-    </div>
-}*@
-
-@if (Model != null)
-{
-    <p>Employee was successfully added.</p>
-    <dl>
-        <dt>First name</dt>
-        <dd>@Model.FirstName</dd>
-        <dt>Last name</dt>
-        <dd>@Model.LastName</dd>
-
-        <dt>Email name</dt>
-        <dd>@Model.Email</dd>
-
-        <dt>Password</dt>
-        <dd>@ViewBag.password</dd>
-    </dl>
-}
-else
-{
-
-<form action="" method="post">
-    <div class="form-horizontal">
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-            </div>
+    @if (Model != null)
+    {
+        <p class="text-success">Employee was successfully added.</p>
+        <div class="center-block col-md-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.FirstName</td>
+                        <td>@Model.LastName</td>
+                        <td>@Model.Email</td>
+                        <td>@ViewBag.password</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-            </div>
+        <div>
+            @Html.ActionLink("FINISH", "Index", "Employee", new { }, new { @class = "btn btn-primary" })
+
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        
+
+        @*<dl class="col-md-4 center-block">
+            <dt>First name</dt>
+            <dd>@Model.FirstName</dd>
+            <dt>Last name</dt>
+            <dd>@Model.LastName</dd>
+
+            <dt>Email name</dt>
+            <dd>@Model.Email</dd>
+
+            <dt>Password</dt>
+            <dd>@ViewBag.password</dd>
+        </dl>*@
+    }
+    else
+    {
+        <form action="" method="post" class="form-horizontal col-md-6 center-block">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save Profile" class="btn btn-primary" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-    </div>
-
-</form>
-
-}
-
-
-
-
-@Html.ActionLink("Back", "Index")
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", type="date" } })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="ADD EMPLOYEE" class="btn btn-primary" />
+                    @Html.ActionLink("CANCEL", "Index", "Employee", new { }, new { @class = "btn btn-default" })
+                </div>
+            </div>
+        </form>
+    }
+</div>

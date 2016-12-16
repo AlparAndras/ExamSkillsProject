@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExamSkillProject.Models
 {
@@ -25,6 +27,9 @@ namespace ExamSkillProject.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Picture { get; set; }
+
+
+        public DateTime StartDate { get; set; }
 
         // public virtual ICollection<Test> tests { get; set; }
     }
