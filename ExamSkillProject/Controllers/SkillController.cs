@@ -1,4 +1,6 @@
 ﻿using ExamSkillProject.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +12,7 @@ namespace ExamSkillProject.Controllers
 {
     public class SkillController : Controller
     {
+        private UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         private ApplicationDbContext db = new ApplicationDbContext();
         private List<Skill> Skills = new List<Skill>();
         // GET: CretaeSkill
@@ -30,21 +33,18 @@ namespace ExamSkillProject.Controllers
                 {
                         HttpPostedFileBase skillFile = Request.Files[0];
                         if (skillFile.ContentLength > 0)
-                            {
-                                
+                            {                                
                                 var fileName = Path.GetFileName(skillFile.FileName);
                                 skill.SkillIcon = Path.Combine(Server.MapPath("~/UploadedFiles"), fileName);
-                                skillFile.SaveAs(skill.SkillIcon);
-                                this.db.Skill.Add(skill);
-                                db.SaveChanges();
-                                Skills = this.db.Skill.ToList();
+                                skillFile.SaveAs(skill.SkillIcon);                                
                             }
-                    
-                    //this.db.Skill.Add(skill);
-                    
-                    //Skill skillNew = this.db.Skill.Find(skill.SkillId);
-                    
-                    return RedirectToAction("SkillDetails", new { id = skill.SkillId });
+                        ApplicationUser currentUser = db.Users.Find(User.Identity.GetUserId());
+                        skill.CompanyId = currentUser.CompanyId;
+                        Company currentCompany = db.Companies.Where(i => i.CompanyId == currentUser.CompanyId).First();
+                        this.db.Skill.Add(skill);
+                        db.SaveChanges();
+                        Skills = this.db.Skill.ToList();
+                        return RedirectToAction("SkillDetails", new { id = skill.SkillId });
                  }
             }
             return View("CreateSkill", skill);

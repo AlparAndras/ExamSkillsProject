@@ -178,14 +178,12 @@ namespace ExamSkillProject.Controllers
                     LastName = model.LastName,
                 };
 
-                var result = await UserManager.CreateAsync(user, model.Password);
-                
-                //Makes user as an Admin of a Company
-                
+                var result = await UserManager.CreateAsync(user, model.Password); 
 
 
                 if (result.Succeeded)
                 {
+                    //Makes user as an Admin of a Company
                     UserManager.AddToRole(user.Id, "Admin");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
