@@ -1,0 +1,51 @@
+﻿@model ExamSkillProject.Models.ApplicationUser
+
+
+<h1>Edit</h1>
+
+@using (Html.BeginForm("EditProfile", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form",  enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.FirstName, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <img src="@Url.Content($"~/UploadedFiles/{Model.Picture}")" alt="Alternate Text" />
+    <div class="form-group">
+        @Html.Label("File", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBox("file", "", new { type = "file", @class = "form-control" }) <br />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save changes" class="btn btn-primary" />
+            @Html.ActionLink("CANCEL", "UserProfile", "Home", new { }, new { @class = "btn btn-default" })
+        </div>
+    </div>
+ 
+
+
+}

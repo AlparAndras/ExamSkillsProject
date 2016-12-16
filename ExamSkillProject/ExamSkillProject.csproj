@@ -195,6 +195,18 @@
     <Compile Include="Migrations\201612142017106_Add first and last name to USER model.Designer.cs">
       <DependentUpon>201612142017106_Add first and last name to USER model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612151403363_Add picture to users.cs" />
+    <Compile Include="Migrations\201612151403363_Add picture to users.Designer.cs">
+      <DependentUpon>201612151403363_Add picture to users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612151408157_Added HasPassword property to Users.cs" />
+    <Compile Include="Migrations\201612151408157_Added HasPassword property to Users.Designer.cs">
+      <DependentUpon>201612151408157_Added HasPassword property to Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612151436262_Remove HasPassword.cs" />
+    <Compile Include="Migrations\201612151436262_Remove HasPassword.Designer.cs">
+      <DependentUpon>201612151436262_Remove HasPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Company.cs" />
@@ -294,6 +306,8 @@
     <Content Include="Views\Skill\CreateSkill.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Home\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,6 +324,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612142017106_Add first and last name to USER model.resx">
       <DependentUpon>201612142017106_Add first and last name to USER model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151403363_Add picture to users.resx">
+      <DependentUpon>201612151403363_Add picture to users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151408157_Added HasPassword property to Users.resx">
+      <DependentUpon>201612151408157_Added HasPassword property to Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151436262_Remove HasPassword.resx">
+      <DependentUpon>201612151436262_Remove HasPassword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

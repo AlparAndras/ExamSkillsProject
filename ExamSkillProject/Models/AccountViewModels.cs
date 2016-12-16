@@ -111,6 +111,28 @@ namespace ExamSkillProject.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public class CreateEmployeeViewModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
+        [Display(Name = "Firstname")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only")]
+        [Display(Name = "Lastname")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Picture")]
+        public string Picture { get; set; }
+    }
+
+
     public class ResetPasswordViewModel
     {
         [Required]

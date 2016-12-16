@@ -159,23 +159,23 @@ namespace ExamSkillProject.Controllers
             if (ModelState.IsValid)
             {
 
-              /*  //Fetching UserManager
-                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                /*  //Fetching UserManager
+                  var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-                //Create User with UserManager
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                userManager.Create(user, model.Password);
-                db.SaveChanges();
-                //Add a role to a User
-                var result = UserManager.AddToRole(User.Identity.GetUserId(), "Admin");  */
+                  //Create User with UserManager
+                  var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                  userManager.Create(user, model.Password);
+                  db.SaveChanges();
+                  //Add a role to a User
+                  var result = UserManager.AddToRole(User.Identity.GetUserId(), "Admin");  */
 
-                
+
                 ApplicationUser user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
                     FirstName = model.FirstName,
-                    LastName = model.LastName,
+                    LastName = model.LastName
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password); 

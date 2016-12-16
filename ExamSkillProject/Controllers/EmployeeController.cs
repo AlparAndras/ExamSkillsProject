@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace ExamSkillProject.Controllers
@@ -50,31 +51,28 @@ namespace ExamSkillProject.Controllers
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(ApplicationUser employee)
+        public ActionResult Create(CreateEmployeeViewModel model)
         {
-
-
 
             if (ModelState.IsValid)
             {
                 UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = userManager.FindById(User.Identity.GetUserId());
 
-
-
                 ApplicationUser newUser = new ApplicationUser {
-                    UserName = employee.Email,
-                    Email = employee.Email,
-                    FirstName = employee.FirstName,
-                    LastName = employee.LastName,
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
                     CompanyId = user.CompanyId
                 };
-
+               
                 string password = System.Web.Security.Membership.GeneratePassword(10, 1);
 
+
                 userManager.Create(newUser, password);
-                return Content(password);
-                return RedirectToAction("Index");
+                ViewBag.password = password;
+                return View("Create", newUser);
             }
             else
             {
