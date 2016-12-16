@@ -1,4 +1,6 @@
-﻿@model ExamSkillProject.Models.Skill
+﻿@using ExamSkillProject.Models;
+@using System.Collections;
+@model Tuple<ExamSkillProject.Models.Skill, List<ExamSkillProject.Models.ApplicationUser>, IEnumerable<ExamSkillProject.Models.Assignment>>
 
 
 <!DOCTYPE html>
@@ -9,19 +11,20 @@
     <title>SkillDetails</title>
 </head>
 <body>
-    <div>
+<div class="col-md-12">
+    <div class="form-horizontal col-md-6">
         <h4>SkillDetails</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
 
-                @Html.DisplayNameFor(model => model.SkillIcon)
+                @Html.DisplayNameFor(tuple => tuple.Item1.SkillIcon)
             </dt>
 
             <dd>
                 @foreach (var imgPath in Directory.GetFiles(Server.MapPath("~/UploadedFiles"), "*.png"))
                 {
-                    if(imgPath == Model.SkillIcon)
+                    if (imgPath == Model.Item1.SkillIcon)
                     {
                         var img = new FileInfo(imgPath);
                         <img src="@Url.Content(String.Format("~/UploadedFiles/{0}", img.Name))" />
@@ -32,36 +35,128 @@
 
             </dd>
             <dt>
-              
-                @Html.DisplayNameFor(model => model.SkillName)
+
+                @Html.DisplayNameFor(tuple => tuple.Item1.SkillName)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.SkillName)
+                @Html.DisplayFor(tuple => tuple.Item1.SkillName)
             </dd>
             <dt>
 
-                @Html.DisplayNameFor(model => model.SkillDescription)
+                @Html.DisplayNameFor(tuple => tuple.Item1.SkillDescription)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.SkillDescription)
+                @Html.DisplayFor(tuple => tuple.Item1.SkillDescription)
             </dd>
 
-           
-
-            
 
         </dl>
 
 
     </div>
-    @if (User.IsInRole("Admin"))
-    {
-        <p>@Html.ActionLink("Add New Skill", "CreateSkill")</p>
-    }
-    <p>
-        @Html.ActionLink("Back to List", "ShowAllSkills")
-    </p>
+    <div class="form-horizontal col-md-6">
+        <h4 style="text-align:center">Assign Skill To Employee</h4>
+        <hr />
+
+        <div class="form-horizontal">
+
+            <div class="form-group col-md-12">
+
+                <div class="dropdown col-md-6">
+
+                    <asp:DropDownList ID="ddlCustomers" runat="server">
+                    </asp:DropDownList>
+
+
+                    <button class="btn btn-default dropdown-toggle col-md-12" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Select Employee From List
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="position:relative" aria-labelledby="dropdownMenu1">
+                            <li>@Html.ActionLink(Model.Item1.SkillName, "ShowAllSkills")</li>
+                               @for (int i = 0; i < Model.Item2.Count; i++)
+                               {
+                                   
+                                @Html.ActionLink(Model.Item2[i].FirstName+" "+ Model.Item2[i].LastName, "AssignSkill", "Skill", new { id = Model.Item2[i].Id, skillId = Model.Item1.SkillId })
+         
+                               }
+
+                           
+                         
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Noone</a></li>
+                    </ul>
+                </div>
+
+                <label class="control-label col-md-6" for="EmployeeFullName">Currently Assigned Employees</label>
+                <div class="col-md-6">
+                    @if (Model.Item3 == null)
+                    {
+                        <p>Noone assigned to this skill yet</p>
+                    }
+                    else
+                    {
+                        foreach (var assignment in Model.Item3)
+                        {
+
+                            if (assignment.SkillId == Model.Item1.SkillId)
+                            {
+                                foreach (var user in Model.Item2)
+                                {
+                                    if (user.Id == assignment.UserId)
+                                    {
+                                        <p>@user.FirstName @user.LastName </p>
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+                   
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="col-md-12">
+        <p>Actionlink</p>
+        @foreach (var item in Model.Item2)
+        {
+            
+
+            int b = 0;
+            var enumerator = Model.Item2.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                var user = enumerator.Current;
+
+                @Html.ActionLink(user.LastName, "AssignSkill", "Skill", new { id = user.Id, skillId = Model.Item1.SkillId })
+
+            }
+            
+
+            @Html.ActionLink(User.Identity.Name, "AssignSkill", "Skill", new { userId = item.Id, Model.Item1.SkillId }) 
+        }
+    </div>
+
+    <div class="col-md-12">
+        @if (User.IsInRole("Admin"))
+        {
+            <p>@Html.ActionLink("Add New Skill", "CreateSkill") | @Html.ActionLink("Back to List", "ShowAllSkills") </p>
+
+        }
+        else
+        {
+          <p> @Html.ActionLink("Back to List", "ShowAllSkills") </p>
+        }
+       
+    </div>
+  </div>
 </body>
 </html>

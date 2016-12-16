@@ -15,7 +15,10 @@ namespace ExamSkillProject.Controllers
         private UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         private ApplicationDbContext db = new ApplicationDbContext();
         private List<Skill> Skills = new List<Skill>();
+        private List<Assignment> Assignments = new List<Assignment>();
+
         // GET: CretaeSkill
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult CreateSkill()
         {
@@ -64,19 +67,24 @@ namespace ExamSkillProject.Controllers
             return View(Skills);
 
         }
-        public ActionResult SkillDetails(int id)
+        public ActionResult SkillDetails(int id )
         {
             Skill skill = this.db.Skill.Find(id);
-            return View(skill);
+            Assignments = this.db.Assignment.ToList();
+            //UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var tuple = new Tuple<Skill, List<ApplicationUser>, IEnumerable<Assignment>>(skill, new List<ApplicationUser>(), new List<Assignment>());
+            return View(tuple);
         }
-        [HttpPost]
-        public ActionResult AssignSkill(Assignment assignment)
+        [Authorize(Roles = "Admin")]
+        public ActionResult AssignSkill(Assignment assignment, string userId, int skillId)
         {
-            return View("Assignment");
-        }
-        [HttpGet]
-        public ActionResult AssignSkill(Assignment assignment)
-        {
+            assignment.UserId = userId;
+            assignment.SkillId = skillId;
+            assignment.StartDate = DateTime.Now;
+            assignment.EndDate = DateTime.Now.AddMonths(11);
+            this.db.Assignment.Add(assignment);
+            db.SaveChanges();
+            Assignments = this.db.Assignment.ToList();
             return View("SkillDetails", assignment.SkillId);
         }
 
