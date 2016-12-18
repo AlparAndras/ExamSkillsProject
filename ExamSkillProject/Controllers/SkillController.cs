@@ -45,8 +45,12 @@ namespace ExamSkillProject.Controllers
                         Company currentCompany = db.Companies.Where(i => i.CompanyId == currentUser.CompanyId).First();
                         this.db.Skill.Add(skill);
                         db.SaveChanges();
+                        var user = userManager.FindById(User.Identity.GetUserId());
+                        List<ApplicationUser> users = new List<ApplicationUser>();
+                        users = new List<ApplicationUser>(db.Users.Where(i => i.CompanyId == user.CompanyId)); 
                         Skills = this.db.Skill.ToList();
-                        return RedirectToAction("SkillDetails", new { id = skill.SkillId });
+                        Assignments = this.db.Assignment.ToList();
+                        return RedirectToAction("SkillDetails", new { id = skill.SkillId, users, Assignments });
                  }
             }
             return View("CreateSkill", skill);
@@ -87,7 +91,7 @@ namespace ExamSkillProject.Controllers
             return View(tuple1);
         }
         [Authorize(Roles = "Admin")]
-        public ActionResult AssignSkill( string userId, int skillId, Assignment assignment)
+        public ActionResult AssignSkill(Assignment assignment, string userId, int skillId)
         {
             assignment.UserId = userId;
             assignment.SkillId = skillId;
