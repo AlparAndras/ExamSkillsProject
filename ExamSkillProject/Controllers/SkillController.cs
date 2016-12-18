@@ -67,16 +67,27 @@ namespace ExamSkillProject.Controllers
             return View(Skills);
 
         }
-        public ActionResult SkillDetails(int id )
+        public ActionResult SkillDetails(int id, List<ApplicationUser>users1 = null, List<Assignment>assignments1 = null )
         {
             Skill skill = this.db.Skill.Find(id);
             Assignments = this.db.Assignment.ToList();
             //UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-            var tuple = new Tuple<Skill, List<ApplicationUser>, IEnumerable<Assignment>>(skill, new List<ApplicationUser>(), new List<Assignment>());
-            return View(tuple);
+            //Tuple<int, string, bool> tuple = new Tuple<int, string, bool>(1, "cat", true);
+            //List<ApplicationUser> users = new UserManager UserManager<ApplicationUser>;
+            var user = userManager.FindById(User.Identity.GetUserId());
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            users = new List<ApplicationUser>(db.Users.Where(i => i.CompanyId == user.CompanyId));
+             Tuple<Skill, List<ApplicationUser>, List<Assignment>> tuple = new Tuple<Skill, List<ApplicationUser>, List<Assignment>>(skill, users, Assignments);
+             Tuple<Skill, List<ApplicationUser>, List<Assignment>> tuple1 = new Tuple<Skill, List<ApplicationUser>, List<Assignment>>(skill, users1, assignments1);
+            if (users1 == null && assignments1 == null)
+            {               
+                return View(tuple);
+            }            
+            //List<object, List<ApplicationUser>, IEnumerable<Assignment>> mList = new List<Skill, List<ApplicationUser>, IEnumerable<Assignment>>();
+            return View(tuple1);
         }
         [Authorize(Roles = "Admin")]
-        public ActionResult AssignSkill(Assignment assignment, string userId, int skillId)
+        public ActionResult AssignSkill( string userId, int skillId, Assignment assignment)
         {
             assignment.UserId = userId;
             assignment.SkillId = skillId;
@@ -84,8 +95,16 @@ namespace ExamSkillProject.Controllers
             assignment.EndDate = DateTime.Now.AddMonths(11);
             this.db.Assignment.Add(assignment);
             db.SaveChanges();
+            Skill skill = this.db.Skill.Find(skillId);
+            var user = userManager.FindById(User.Identity.GetUserId());
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            users = new List<ApplicationUser>(db.Users.Where(i => i.CompanyId == user.CompanyId)); 
             Assignments = this.db.Assignment.ToList();
-            return View("SkillDetails", assignment.SkillId);
+            
+                       
+            //Tuple<Skill, List<ApplicationUser>, List<Assignment>> tuple = new Tuple<Skill, List<ApplicationUser>, List<Assignment>>(skill, users, Assignments);
+           
+            return RedirectToAction("SkillDetails", new { id = skillId, users1 = users, assignments1 = Assignments});
         }
 
     }

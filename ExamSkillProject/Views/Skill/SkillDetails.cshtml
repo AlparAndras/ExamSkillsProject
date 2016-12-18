@@ -1,6 +1,6 @@
 ﻿@using ExamSkillProject.Models;
 @using System.Collections;
-@model Tuple<ExamSkillProject.Models.Skill, List<ExamSkillProject.Models.ApplicationUser>, IEnumerable<ExamSkillProject.Models.Assignment>>
+@model Tuple<ExamSkillProject.Models.Skill, List<ExamSkillProject.Models.ApplicationUser>, List<ExamSkillProject.Models.Assignment>>
 
 
 <!DOCTYPE html>
@@ -66,22 +66,24 @@
 
                 <div class="dropdown col-md-6">
 
-                    <asp:DropDownList ID="ddlCustomers" runat="server">
-                    </asp:DropDownList>
-
-
                     <button class="btn btn-default dropdown-toggle col-md-12" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         Select Employee From List
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" style="position:relative" aria-labelledby="dropdownMenu1">
                             <li>@Html.ActionLink(Model.Item1.SkillName, "ShowAllSkills")</li>
-                               @for (int i = 0; i < Model.Item2.Count; i++)
+                                
+                                @foreach ( var user in Model.Item2)
+                                {
+                                 <li>@Html.ActionLink(user.FirstName + " " + user.LastName, "AssignSkill", new {  userId = user.Id, skillId = Model.Item1.SkillId })</li>
+                                }            
+
+                               @*@for (int i = 0; i < Model.Item2.Count; i++)
                                {
                                    
-                                @Html.ActionLink(Model.Item2[i].FirstName+" "+ Model.Item2[i].LastName, "AssignSkill", "Skill", new { id = Model.Item2[i].Id, skillId = Model.Item1.SkillId })
+                               <li>@Html.ActionLink(Model.Item2[i].FirstName + " " + Model.Item2[i].LastName, "AssignSkill", new { userId = Model.Item2[i].Id, SkillId = Model.Item1.SkillId })</li> 
          
-                               }
+                               }*@
 
                            
                          
@@ -124,13 +126,14 @@
 
 
     </div>
-    <div class="col-md-12">
+    @*<div class="col-md-12">
         <p>Actionlink</p>
-        @foreach (var item in Model.Item2)
+        @{int b = 0;
+        foreach (var item in Model.Item2)
         {
             
 
-            int b = 0;
+            
             var enumerator = Model.Item2.GetEnumerator();
             while (enumerator.MoveNext())
             {
@@ -141,9 +144,10 @@
             }
             
 
-            @Html.ActionLink(User.Identity.Name, "AssignSkill", "Skill", new { userId = item.Id, Model.Item1.SkillId }) 
+            @Html.ActionLink(User.Identity.Name, "AssignSkill",  new {  id = Model.Item2.Capacity, Model.Item1.SkillId }) 
         }
-    </div>
+       }
+    </div>*@
 
     <div class="col-md-12">
         @if (User.IsInRole("Admin"))
