@@ -23,7 +23,7 @@ namespace ExamSkillProject.Controllers
         public ActionResult Index()
         {
 
-             var currentUser = userManager.FindById(User.Identity.GetUserId());
+            var currentUser = CurrentUser();
 
             if(currentUser.CompanyId == 0)
             {
@@ -53,15 +53,10 @@ namespace ExamSkillProject.Controllers
 
                 db.Companies.Add(company);
                 db.SaveChanges();
-
+              
                 var currentUser = db.Users.Find(User.Identity.GetUserId());
-                ApplicationUser newUser = db.Users.Find(User.Identity.GetUserId());
 
-                newUser.CompanyId = company.CompanyId;
-                newUser.Id = currentUser.Id;
-
-                db.Entry(currentUser).CurrentValues.SetValues(newUser);
-
+                db.Entry(currentUser).CurrentValues.SetValues( new{ CompanyId = company.CompanyId});
                 db.SaveChanges();
 
                 return View("Index", company);
