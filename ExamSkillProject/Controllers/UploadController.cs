@@ -23,6 +23,7 @@ namespace ExamSkillProject.Controllers
         [HttpPost]
         public ActionResult UploadFile(HttpPostedFileBase file)
         {
+
             try
             {
                 if (file.ContentLength > 0)

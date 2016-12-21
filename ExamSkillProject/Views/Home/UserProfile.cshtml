@@ -1,0 +1,39 @@
+﻿@model ExamSkillProject.Models.ApplicationUser
+
+
+
+
+<div>
+    <h4>Edit your account</h4>
+    <hr />
+    <p class="text-success">@ViewBag.Message</p>
+
+    <dl class="dl-horizontal">
+
+        <dt>Profile picture</dt>
+        <dd>
+            <img src="@Url.Content($"~/UploadedFiles/{Model.Picture}")" alt="Alternate Text" />
+        </dd>
+
+
+        <dt>Email</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>First name</dt>
+        <dd>@Model.FirstName</dd>
+
+        <dt>Last name</dt>
+        <dd>@Model.LastName</dd>
+
+   
+
+        <dd> @Html.ActionLink("Edit profile", "EditProfile", "Home", new { }, null) </dd>
+    </dl>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Password</dt>
+        <dd> @Html.ActionLink("Change your password", "ChangePassword", "Manage", new { }, null) </dd>
+    </dl>
+</div>
+
+

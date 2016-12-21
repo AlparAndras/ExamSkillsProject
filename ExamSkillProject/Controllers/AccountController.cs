@@ -18,7 +18,7 @@ namespace ExamSkillProject.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        //private ApplicationDbContext db = new ApplicationDbContext();
         public AccountController()
         {
         }
@@ -159,16 +159,34 @@ namespace ExamSkillProject.Controllers
             if (ModelState.IsValid)
             {
 
+                /*  //Fetching UserManager
+                  var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
 
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                
-                //Makes user as an Admin of a Company
-                UserManager.AddToRole(user.Id, "Admin");
+                  //Create User with UserManager
+                  var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                  userManager.Create(user, model.Password);
+                  db.SaveChanges();
+                  //Add a role to a User
+                  var result = UserManager.AddToRole(User.Identity.GetUserId(), "Admin");  */
+
+
+                ApplicationUser user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    StartDate = DateTime.Now
+                    
+                };
+
+                var result = await UserManager.CreateAsync(user, model.Password); 
 
 
                 if (result.Succeeded)
                 {
+                    //Makes user as an Admin of a Company
+                    UserManager.AddToRole(user.Id, "Admin");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771

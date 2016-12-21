@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ExamSkillProject.Models
 {
@@ -20,8 +22,16 @@ namespace ExamSkillProject.Models
             // Add custom user claims here
             return userIdentity;
         }
-        public int CompanyId { get; set; }        
        
+        public int CompanyId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Picture { get; set; }
+
+
+        public DateTime StartDate { get; set; }
+
+        // public virtual ICollection<Test> tests { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -38,5 +48,6 @@ namespace ExamSkillProject.Models
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Skill> Skill { get; set; }
+        public DbSet<Assignment> Assignment { get; set; }
     }
 }

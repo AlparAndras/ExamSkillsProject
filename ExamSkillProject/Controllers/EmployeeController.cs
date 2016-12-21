@@ -1,10 +1,13 @@
-﻿using ExamSkillProject.Models;
+﻿using ExamSkillProject.Helpers;
+using ExamSkillProject.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace ExamSkillProject.Controllers
@@ -20,16 +23,25 @@ namespace ExamSkillProject.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            employees = db.Employees.ToList();
-            return View(employees);
+            
+            UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var user = userManager.FindById(User.Identity.GetUserId());
+
+            if (user.CompanyId != 0) {
+                return View(db.Users.Where(i => i.CompanyId == user.CompanyId));
+            }
+
+            return View();
+
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            Employee employee = db.Employees.Find(id);
+            ApplicationUser employee = db.Users.Find(id);
             return View(employee);
         }
+
 
         // GET: Employee/Create
         public ActionResult Create()
@@ -39,16 +51,29 @@ namespace ExamSkillProject.Controllers
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(Employee employee)
+        public ActionResult Create(CreateEmployeeViewModel model)
         {
-            if(ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
                 UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 var user = userManager.FindById(User.Identity.GetUserId());
-                employee.CompanyId = user.CompanyId;
-                db.Employees.Add(employee);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                ApplicationUser newUser = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    CompanyId = user.CompanyId,
+                    StartDate = model.StartDate
+                };
+               
+                string password = System.Web.Security.Membership.GeneratePassword(10, 1);
+
+
+                userManager.Create(newUser, password);
+                ViewBag.password = password;
+                return View("Create", newUser);
             }
             else
             {

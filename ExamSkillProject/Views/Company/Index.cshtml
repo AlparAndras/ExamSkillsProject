@@ -1,19 +1,41 @@
 ﻿@model ExamSkillProject.Models.Company
 
-<h2>Company</h2>
+
+<h1>Company info</h1>
+<div class="info-data col-md-12">
+    @if (Request.IsAuthenticated)
+    {
+        if (Model != null)
+        {
+
+            <div class="col-md-4 center-block">
+                <h2>@Model.Name</h2>
+                <img src="@Url.Content($"~/UploadedFiles/{Model.Icon}")" alt="Alternate Text" />
+                <dl>
+                    <dt>Address</dt>
+                    <dd>@Model.Address</dd>
+                    <dt>Description</dt>
+                    <dd>@Model.Description</dd>
+
+                </dl>
+            </div>
 
 
-@if (Model != null)
-{
-    <h3>@Model.Name</h3>
+            if (User.IsInRole("Admin"))
+            {
+                <div class="center-block text-center">
+                    @Html.ActionLink("EDIT COMPANY PROFILE", "Edit", "Company", new { }, new { @class = "btn btn-primary" })
+                </div>
+            }
 
-    <p>@Model.Description</p>
+        }
+        else
+        {
+            <p>You don't have a company yet.</p>
+            <div class="center-block text-center">
+                @Html.ActionLink("CREATE COMPANY", "Create", "Company", new { }, new { @class = "btn btn-primary" })
+            </div>
+        }
 
-    <p>@Model.Address</p>
-
-    @Html.ActionLink("EDIT COMPANY PROFILE", "Edit", "Company", new { }, null);
-    
-}else
-{
-    @Html.ActionLink("CREATE COMPANY", "Create", "Company", new { }, null);
-}
+    }
+</div>

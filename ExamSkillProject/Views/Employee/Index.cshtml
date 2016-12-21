@@ -1,19 +1,60 @@
-﻿@model IEnumerable<ExamSkillProject.Models.Employee>
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model IEnumerable<ExamSkillProject.Models.ApplicationUser>
 
-<h2>Index</h2>
 
-<h1>Hello from employee</h1>
+<h1>Employees</h1>
 
-@foreach (var item in Model)
-{
-    <li>
-        @Html.DisplayFor(model => item.Email)
-        @Html.ActionLink("Details", "Details", new { id = item.EmployeeID})
-    </li>
-}
+<div class="info-data col-md-12">
 
-@Html.ActionLink("Create", "Create")
 
+
+    @if (Model == null)
+    {
+        <p>To add employees you first need to @Html.ActionLink("create a company", "Create", "Company", new { }, null) </p>
+    }
+    else
+    {
+
+        if (User.IsInRole("Admin"))
+        {
+            <div class="text-center center-block">
+                @Html.ActionLink("ADD EMPLOYEE", "Create", "Employee", new { }, new { @class = "btn btn-primary" })
+            </div>
+
+        }
+        <div class="col-md-6 center-block">
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img class="img-circle" src="@Url.Content($"~/UploadedFiles/{item.Picture}")" alt="Alternate Text" />
+                            </td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@Html.ActionLink("Details", "Details", new { id = item.Id })</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+                @*@foreach (var item in Model)
+                {
+                    <img class="img-circle" src="@Url.Content($"~/UploadedFiles/{item.Picture}")" alt="Alternate Text" />
+                    <span>@item.FirstName @item.LastName</span>
+              
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
+                }*@
+        </div>
+    }
+
+
+</div>

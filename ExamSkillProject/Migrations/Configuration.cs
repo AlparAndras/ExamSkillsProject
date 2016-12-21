@@ -2,7 +2,6 @@ namespace ExamSkillProject.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -12,24 +11,29 @@ namespace ExamSkillProject.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(ExamSkillProject.Models.ApplicationDbContext context)
         {
-            Company c = new Company { Name = "Apple", Description = "tete", Address = "Lygten 37" };
-            context.Companies.Add(c);
-            context.SaveChanges();
+            //  This method will be called after migrating to the latest version.
 
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             string role = "Admin";
-            if (!roleManager.RoleExists(role))
+            if(!roleManager.RoleExists(role))
             {
                 var roleResult = roleManager.Create(new IdentityRole(role));
             }
-
-
-
         }
     }
 }

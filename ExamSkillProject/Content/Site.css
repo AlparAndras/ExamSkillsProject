@@ -1,12 +1,15 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+      font-family: 'Slabo 27px', serif;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+  
+
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -69,4 +72,42 @@ textarea {
 .content1 p {
   padding: 20px 40px;
   font-weight: 300;
+}
+
+
+
+/* CUSTOM LAYOUT */
+
+h1 {
+    text-align:left;
+    border-bottom:1px solid rgba(0, 0, 0, 0.1);
+}
+
+dl, form{
+    text-align:left;
+}
+
+img {
+    width:50px;
+    height:50px;
+
+}
+
+.info-data{
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.center-block {
+    display:block;
+    margin:1em auto;
+}
+table{
+    text-align:left;
+}
+table img {
+    width:25px;
+    height:25px;
 }

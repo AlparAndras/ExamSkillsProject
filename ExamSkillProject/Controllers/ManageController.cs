@@ -238,7 +238,7 @@ namespace ExamSkillProject.Controllers
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("UserProfile", "Home", new { });
             }
             AddErrors(result);
             return View(model);

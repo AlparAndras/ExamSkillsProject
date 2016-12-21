@@ -17,7 +17,9 @@ namespace ExamSkillProject.Models
 
         public string SkillDescription { get; set; }
 
-        
+        public int CompanyId { get; set; }
+
+   
 
 
         // Your context has been configured to use a 'Skill' connection string from your application's 
