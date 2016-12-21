@@ -206,9 +206,9 @@
     <Compile Include="Migrations\201612121404425_jj.Designer.cs">
       <DependentUpon>201612121404425_jj.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612121334351_renamedSkill.cs" />
-    <Compile Include="Migrations\201612121334351_renamedSkill.Designer.cs">
-      <DependentUpon>201612121334351_renamedSkill.cs</DependentUpon>
+    <Compile Include="Migrations\201612121445148_new1.cs" />
+    <Compile Include="Migrations\201612121445148_new1.Designer.cs">
+      <DependentUpon>201612121445148_new1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -317,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612121404425_jj.resx">
       <DependentUpon>201612121404425_jj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612121445148_new1.resx">
+      <DependentUpon>201612121445148_new1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
