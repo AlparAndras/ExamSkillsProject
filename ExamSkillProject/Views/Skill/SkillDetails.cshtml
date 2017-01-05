@@ -1,5 +1,6 @@
 ﻿@using ExamSkillProject.Models;
 @using System.Collections;
+@using System.Linq;
 @model Tuple<ExamSkillProject.Models.Skill, List<ExamSkillProject.Models.ApplicationUser>, List<ExamSkillProject.Models.Assignment>>
 
 
@@ -71,25 +72,48 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" style="position:relative" aria-labelledby="dropdownMenu1">
-                                
-                                @foreach ( var user in Model.Item2)
-                                {
-                                 <li>@Html.ActionLink(user.FirstName + " " + user.LastName, "AssignSkill", new {  userId = user.Id, skillId = Model.Item1.SkillId })</li>
-                                }            
+                             @*@if (Model.Item3 == null)
+                             {
+                                 foreach (var user in Model.Item2)
+                                 {
+                                    <li>@Html.ActionLink(user.FirstName + " " + user.LastName, "AssignSkill", new { userId = user.Id, skillId = Model.Item1.SkillId })</li>
+                                 }
+                             }
+                             else
+                             {*@
+                                @{
+                                    
+                                    List<string> foundUsers = new List<string>();
 
-                               @*@for (int i = 0; i < Model.Item2.Count; i++)
-                               {
-                                   
-                               <li>@Html.ActionLink(Model.Item2[i].FirstName + " " + Model.Item2[i].LastName, "AssignSkill", new { userId = Model.Item2[i].Id, SkillId = Model.Item1.SkillId })</li> 
-         
-                               }*@
+                                    foreach (var assignment in Model.Item3)
+                                    {
+                                        if (assignment.SkillId == Model.Item1.SkillId)
+                                        {                                         
+                                        foundUsers.Add(assignment.UserId);
+                                        }
+                                    }
+                                                                      
+                                        foreach (var user in Model.Item2)
+                                        {
+                                            if (!foundUsers.Contains(user.Id))
+                                            {
+                                            <li>@Html.ActionLink(user.FirstName + " " + user.LastName, "AssignSkill", new { userId = user.Id, skillId = Model.Item1.SkillId }) </li>
+                                            }
+                                            
+                                        }
+                                         
+                                     
+                                 }
+                             
+                                       
+                        
 
                            
-                         
                         <li role="separator" class="divider"></li>
                         <li><a href="#">Noone</a></li>
                     </ul>
                 </div>
+
 
                 <label class="control-label col-md-6" for="EmployeeFullName">Currently Assigned Employees</label>
                 <div class="col-md-6">
@@ -108,7 +132,7 @@
                                 {
                                     if (user.Id == assignment.UserId)
                                     {
-                                        <p>@user.FirstName @user.LastName </p>
+                                        <p>@user.FirstName @user.LastName  |  @Html.ActionLink("unassign", "Unassign", new { skillId = Model.Item1.SkillId, assignmentId = assignment.AssignmentId})</p>
                                     }
                                 }
 
@@ -125,33 +149,11 @@
 
 
     </div>
-    @*<div class="col-md-12">
-        <p>Actionlink</p>
-        @{int b = 0;
-        foreach (var item in Model.Item2)
-        {
-            
-
-            
-            var enumerator = Model.Item2.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                var user = enumerator.Current;
-
-                @Html.ActionLink(user.LastName, "AssignSkill", "Skill", new { id = user.Id, skillId = Model.Item1.SkillId })
-
-            }
-            
-
-            @Html.ActionLink(User.Identity.Name, "AssignSkill",  new {  id = Model.Item2.Capacity, Model.Item1.SkillId }) 
-        }
-       }
-    </div>*@
 
     <div class="col-md-12">
         @if (User.IsInRole("Admin"))
         {
-            <p>@Html.ActionLink("Add New Skill", "CreateSkill") | @Html.ActionLink("Back to List", "ShowAllSkills") </p>
+            <p>@Html.ActionLink("Add New Skill", "CreateSkill") | @Html.ActionLink("Back to List", "ShowAllSkills") | @Html.ActionLink("Delete Skill", "DeleteSkill", new { skillId = Model.Item1.SkillId}) </p>
 
         }
         else
