@@ -42,7 +42,6 @@ namespace ExamSkillProject.Controllers
                             }
                         ApplicationUser currentUser = db.Users.Find(User.Identity.GetUserId());
                         skill.CompanyId = currentUser.CompanyId;
-                        Company currentCompany = db.Companies.Where(i => i.CompanyId == currentUser.CompanyId).First();
                         this.db.Skill.Add(skill);
                         db.SaveChanges();
                         var user = userManager.FindById(User.Identity.GetUserId());
@@ -54,6 +53,7 @@ namespace ExamSkillProject.Controllers
             }
             return View("CreateSkill", skill);
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteSkill(int skillId)
         {
             Skill skill = this.db.Skill.Find(skillId);
@@ -68,7 +68,7 @@ namespace ExamSkillProject.Controllers
                  assignment.EndDate = DateTime.Now;
 
                }
-                }
+               }
               } 
 
             this.db.SaveChanges();
@@ -78,16 +78,26 @@ namespace ExamSkillProject.Controllers
         //Show All Skills
         public ActionResult ShowAllSkills()
         {
+            var user = userManager.FindById(User.Identity.GetUserId());
             Skills = this.db.Skill.ToList();
-            if (Skills.Count < 1)
+            List<Skill> companySkills = new List<Skill>();
+            foreach (var skill in Skills)
             {
-                if (User.IsInRole("Admin"))
+                if (skill.CompanyId == user.CompanyId)
                 {
-                    return RedirectToAction("CreateSkill");
+                    companySkills.Add(skill);
+                    if (Skills.Count < 1)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            return RedirectToAction("CreateSkill");
+                        }
+                        return View(companySkills);
+                    }
                 }
-                return View(Skills);
             }
-            return View(Skills);
+            
+            return View(companySkills);
 
         }
         public ActionResult SkillDetails(int id, List<ApplicationUser> users = null, List<Assignment> assignments = null)
@@ -96,14 +106,6 @@ namespace ExamSkillProject.Controllers
             assignments = this.db.Assignment.ToList();
             var user = userManager.FindById(User.Identity.GetUserId());
             users = new List<ApplicationUser>(db.Users.Where(i => i.CompanyId == user.CompanyId));
-            //List<ApplicationUser> unassignedUsers = new List<ApplicationUser>();
-            //var query =
-            //    from unassignedUser in db.Users
-            //    where unassignedUser.CompanyId == user.CompanyId
-            //    join currentAssignments in db.Assignment on unassignedUser.Id equals currentAssignments.UserId
-            //    where currentAssignments.UserId != unassignedUser.Id || currentAssignments.EndDate < DateTime.Now
-            //    select unassignedUser;
-            //unassignedUsers = query.ToList<ApplicationUser>();
             //Tuple<int, string, bool> tuple = new Tuple<int, string, bool>(1, "cat", true);
             Tuple<Skill, List<ApplicationUser>, List<Assignment>> tuple = new Tuple<Skill, List<ApplicationUser>, List<Assignment>>(skill, users, assignments);
             return View(tuple);
@@ -130,17 +132,9 @@ namespace ExamSkillProject.Controllers
             //     where currentAssignments.UserId != unassignedUser.Id || currentAssignments.EndDate < DateTime.Now
             //     select  unassignedUser;
             //unassignedUsers = query.ToList<ApplicationUser>();
-         
-           //         var query =
-           //from post in database.Posts
-           //join meta in database.Post_Metas on post.ID equals meta.Post_ID
-           //where post.ID == id
-           //select new { Post = post, Meta = meta };
-
-           //    var UserInRole = db.UserProfiles.Join(db.UsersInRoles, u => u.UserId, uir => uir.UserId,(u, uir) => new { u, uir }).Join(db.Roles, r => r.uir.RoleId, ro => ro.RoleId, (r, ro) => new { r,ro })
-           //.Where(m => m.r.u.UserId == 1).Select(m => new AddUserToRole{ UserName = m.r.u.UserName, RoleName = m.ro.RoleName });
           return RedirectToAction("SkillDetails", new { id = skillId, users = Users, assignments = Assignments});
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult Unassign(int skillId, int assignmentId)
         {
             
